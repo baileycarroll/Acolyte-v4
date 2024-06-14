@@ -58,6 +58,12 @@
                     ><i class="fas fa-book fa-fw me-3"></i
                         ><span>Classes</span></a
                     >
+                    <a
+                        href="/discussions"
+                        class="list-group-item list-group-item-action py-2 ripple"
+                    ><i class="fa-solid fa-people-group fa-fw me-3"></i><span>Discussions</span></a
+                    >
+
                 @endif
                 @can('ViewSystem')
                     <a

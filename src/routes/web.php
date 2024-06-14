@@ -3,12 +3,14 @@
 use App\Http\Controllers\AwardController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\GradebookController;
+use App\Http\Controllers\DiscussionsController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserContentController;
 use App\Models\Award;
 use App\Models\Course;
+use App\Models\Discussions;
 use App\Models\Gradebook;
 use App\Models\Module;
 use App\Models\SetupKeys;
@@ -62,7 +64,14 @@ Route::group(['middleware'=>'role:Support'], function () {
     Route::post('/delete_permission', [PermissionsController::class, 'deletePermission']);
 });
 // Universal Views
-Route::get('/', function (){ return redirect('/login');});
+Route::get('/', function (){
+    if(Auth::check()){
+        return redirect('/home');
+    } else {
+        return redirect('/login');
+    }
+});
+
 
 // Register/Login
 Route::middleware('guest')->group( function() {
@@ -76,7 +85,9 @@ Route::middleware('guest')->group( function() {
 Route::middleware('auth')->group(function() {
     Route::get('/home', function () {
         return view('home', [
-        'instance_name' => SetupKeys::where('key', '=', 'instance_name')->first()->value
+        'instance_name' => SetupKeys::where('key', '=', 'instance_name')->first()->value,
+            'discussion' => discussions::where('month', '=', (date('n')-1))->first(),
+
     ]);
 });
     Route::post('/logout', [SessionController::class, 'logout']);
@@ -477,3 +488,14 @@ Route::get('/student_resources', function() {
         'resource_types' => Resource_Types::getResourceTypes()
     ]);
 });
+// Discussion Management
+Route::get('/discussions', function() {
+    return view('sessions/admin/discussions',[
+        'classes' => Classes::all(),
+        'modules' => Module::all(),
+    ]);
+});
+Route::get('discussions/read/{id}', function($id) {return view('sessions.admin.discussion_information_readonly', ['discussion' => Discussions::find($id), 'classes' => Classes::all(), 'modules' => Module::all()]);});
+Route::get('discussions/{id}', function($id) {return view('sessions.admin.discussion_information', ['discussion' => Discussions::find($id), 'classes' => Classes::all(), 'modules' => Module::all()]);});
+Route::post('/add_discussion', [DiscussionsController::class, 'createDiscussion']);
+Route::post('/update_discussion', [DiscussionsController::class, 'updateDiscussion']);

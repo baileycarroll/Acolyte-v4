@@ -30,7 +30,7 @@ class RegisterController extends Controller
             'email' => $attributes['email'],
             'username' => $attributes['username'],
             'password' => bcrypt($attributes['password']),
-            'primary_department' => Department::where('name', '=', "Support")->first()->id,
+            'primary_department' => Department::find(2)->id,
             'user_status' => 'Active',
             'learning_style' => Learning_Style::where('name', '=', "Unknown")->first()->id,
             'license' => Licenses::where('name', '=', "Trial")->first()->id,

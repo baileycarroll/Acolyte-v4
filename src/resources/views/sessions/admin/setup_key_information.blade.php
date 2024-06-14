@@ -20,6 +20,7 @@
                                 <input type="hidden" name="key_id" value="{{$key->id}}">
                                 <label for="key_name">Key Name:</label>
                                 <input type="text" name="key_name" class="form-control mb-2" value="{{$key->key}}" required disabled>
+                                <input type="hidden" name="key_name" class="form-control mb-2" value="{{$key->key}}">
                                 <label for="key_value">Value:</label>
                                 <input type="text" name="key_value" class="form-control" value="{{$key->value}}" required>
                                 <label for="old_key_value">Previous Value</label>
