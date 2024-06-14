@@ -1,25 +1,11 @@
-# Acolyte LMS
+# Acolyte REALMS
 
-## WARNING:
-v2.4.0 does not currently function, I messed up the DB migrations and there are issues getting the tables to migrate appropriately.
 
 # Intro
 
-This is the second version of Acolyte, after years of growing my skillsets in web development I returned to Acolyte and said: "This is a really cool idea, I want to actually expand upon this and make it better." And so taking all of the knowledge that I gained I did expand upon it and came up with this design. 
+Alrighty now we are really stepping into a bigger world! This is version 4.0.0 of Acolyte R.E.A.L.M.S., and largely one of my biggest achievements. I took everything that I learned over the years and compounded it into this platform. Remembering the blunders that were made in v3.0.0 and the missteps in v2.4.0 and below I was able to turn my MVP into something that was useable. This version of Acolyte was actually licensed out to a client of mine and was used until January 2024. 
 
-Leaving basic PHP, Bootstrap 4, and Custom CSS behind I moved towards using a couple of frameworks to extend my now much greater skillset. In this version I used the following frameworks:
-
-+ Laravel v9.11
-+ MDBoostrap 4
-+ FontAwesome
-+ SaSS
-
-Using those above frameworks I was quickly able to expand upon the concept and get a viable MVP ready, however this was only the start of the journey. I was not as good at backend design and development at the time (let alone frontend) which caused me to make serious design errors that I wouldn't catch until I continued to grow and expand. At that point being far too late to resolve without a major version upgrade.
-
-## Setup at Time of Development (Jan 2021)
-Unlike Acolyte v1.0.0 setup for this system is much much easier, there is a shell script that is included that will install all the necessary dependencies on the VPS, and walk you through editing / creating the .env file for the entire program to run. 
-
-## Setup Now (2024)
+## Setup
 Since my skills have grown I have learned a variety of ways to improve my deployment methods and now everything is deployable via Docker for easy replication and viewing. I learned from many mistakes that were made and even kept the migrations and base DB seeder included and use the .env file to keep passwords stored and secured.
 
 1. Clone the repository
@@ -27,14 +13,23 @@ Since my skills have grown I have learned a variety of ways to improve my deploy
 3. From the root directory run the following: `docker-compose --env-file ./src/.env up -d`
 4. Open an ssh connection to the app container and run the following command.
    
-   + `composer install && php artisan migrate --seed && php artisan key:generate`
+   + `composer install`
 
-5. Now you can login and view the application with the following credentials:
+5. Now edit the DB_USERNAME in .env to root.
+6. Now open an ssh connection to the app container again and run the following command.
+
+   + `php artisan migrate --seed`
+7. Edit the DB_USERNAME in .env back to the original value
+8. Open an ssh connection to the app container one more time and run the following:
+
+   + `php artisan key:generate`
+
+9. Now you can login and view the application with the following credentials:
 
    + **Username:** acolyte
    + **Password:** \[SUPPORT_PASSWORD\] as defined in your .env file.  
 
-6. The installation is extremely bare bones and the Digital Ocean spaces information will no longer work, so class video uploads / etc will no longer work. However for demonstrating the UI this will suffice. 
+10. The installation is extremely bare bones and the Digital Ocean spaces information will no longer work, so class video uploads / etc will no longer work. However for demonstrating the UI this will suffice. 
 
 ## Take Down
 Simply run `docker-compose --env-file ./src/.env down`.
