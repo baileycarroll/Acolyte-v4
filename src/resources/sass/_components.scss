@@ -1,0 +1,160 @@
+//Sidebar
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 58px 0 0; /* Height of navbar */
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+    width: 240px;
+    z-index: 600;
+}
+
+@media (max-width: 991.98px) {
+    .sidebar {
+        width: 100%;
+    }
+}
+.sidebar .active {
+    border-radius: 5px;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+}
+
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: 0.5rem;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+thead tr {
+    background-color: $primary !important;
+    color: $white;
+}
+#radio-cards label {
+    width: 100%;
+}
+
+#radio-cards .card-input-element {
+    display: none;
+}
+
+#radio-cards .card-input:hover {
+    cursor: pointer;
+    background-color: rgba($primary, 0.2);
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+}
+
+#radio-cards .card-input-element:checked + .card-input {
+    border: 1px solid $primary;
+}
+.circle-card {
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%;
+    &_text {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+}
+// Component Backgrounds
+.bg-jumbo-intro {
+    background: linear-gradient(rgba($secondary, 0.75), rgba($primary, 0.6)), url("../assets/img/misty-forest.jpg");
+    background-size: cover;
+    background-position-y: 50%;
+    //Photo by <a href="https://unsplash.com/@ripato?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Ricardo Gomez Angel</a> on <a href="https://unsplash.com/s/photos/misty-forest?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+
+
+}
+.bg-violets {
+    background: linear-gradient(rgba($secondary, 0.75), rgba($primary, 0.6)), url("../assets/img/violets.jpg");
+    background-size: cover;
+    background-position-y: 50%;
+    //Photo by <a href="https://unsplash.com/@tytoalbatraoz?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Teo Lê</a> on <a href="https://unsplash.com/s/photos/violets?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+}
+.bg-chrisanths {
+    background: linear-gradient(rgba($secondary, 0.75), rgba($primary, 0.6)), url("../assets/img/chrisanthemums.jpg");
+    background-size: cover;
+    background-position-y: 50%;
+    //Photo by <a href="https://unsplash.com/@pizbern?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Pauline Bernfeld</a> on <a href="https://unsplash.com/s/photos/chrysanthemum?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+}
+.bg-calendar {
+    background: linear-gradient(rgba($secondary, 0.75), rgba($primary, 0.6)), url("../assets/img/calendar.jpg");
+    background-size: cover;
+    background-position-y: 50%;
+    //Photo by <a href="https://unsplash.com/@hudsoncrafted?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Debby Hudson</a> on <a href="https://unsplash.com/s/photos/calendar?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+}
+.bg-snapdragon {
+    background: linear-gradient(rgba($secondary, 0.75), rgba($primary, 0.6)), url("../assets/img/snapdragon.jpg");
+    background-size: cover;
+    background-position-y: 50%;
+    //Photo by <a href="https://unsplash.com/@ashkfor121?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Ashkan Forouzani</a> on <a href="https://unsplash.com/s/photos/snapdragon?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+}
+.circle-bg {
+    &_staff {
+        background: linear-gradient(rgba($secondary, 0.7), rgba($primary, 0.6)), url("../assets/img/staff-bg.jpg");
+        background-size: cover;
+        background-position-y: 50%;
+        //Photo by <a href="https://unsplash.com/@brookecagle?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Brooke Cagle</a> on <a href="https://unsplash.com/s/photos/staff?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+    }
+    &_event {
+        background: linear-gradient(rgba($secondary, 0.9), rgba($primary, 0.6)), url("../assets/img/event-bg.jpg");
+        background-size: cover;
+        background-position-y: 50%;
+        //Photo by <a href="https://unsplash.com/@fifernando?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Fidel Fernando</a> on <a href="https://unsplash.com/s/photos/event?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+    }
+    &_blog {
+        background: linear-gradient(rgba($secondary, 0.9), rgba($primary, 0.6)), url("../assets/img/blog-bg.jpg");
+        background-size: cover;
+        background-position-y: 50%;
+        //Photo by <a href="https://unsplash.com/@goumbik?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lukas Blazek</a> on <a href="https://unsplash.com/s/photos/blog?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+    }
+}
+
+//Image overlay stylings
+.img-overlay {
+    background-color: #000;
+    & img {
+        opacity: 0.6;
+    }
+}
+.bg-image-main {
+    background: linear-gradient(0deg, rgba($primary, 0.3), rgba($primary, 0.3)), url('../assets/img/misty-forest.jpg');
+    background-size: cover;
+}
+/* Color of the links BEFORE scroll */
+.navbar-scroll .nav-link,
+.navbar-scroll .navbar-toggler-icon,
+.navbar-scroll .navbar-brand {
+    color: #fff;
+}
+
+/* Color of the links AFTER scroll */
+.navbar-scrolled .nav-link,
+.navbar-scrolled .navbar-toggler-icon,
+.navbar-scrolled .navbar-brand {
+    color: #fff;
+}
+
+/* Color of the navbar AFTER scroll */
+.navbar-scroll,
+.navbar-scrolled {
+    background-color: #cbbcb1;
+}
+
+.mask-custom {
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, .15);
+}
+
+.navbar-brand {
+    font-size: 1.75rem;
+    letter-spacing: 3px;
+}

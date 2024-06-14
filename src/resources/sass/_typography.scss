@@ -1,0 +1,29 @@
+// //Fonts
+ @font-face {
+     font-family: Philosopher;
+     src: url('/resources/assets/fonts/Philosopher/Philosopher-Regular.ttf');
+ }
+
+ * {
+     font-family: Philosopher, sans-serif;
+ }
+
+
+//Font Sizes
+.ft-nav-brand {
+    font-size: 1.5rem;
+}
+
+.ft-nav {
+    font-size: 1.2rem;
+}
+
+
+//Pre-Login
+.main_heading {
+    font-size: 3.5rem;
+    &-text {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production"
+    },
+    "devDependencies": {
+        "axios": "^0.25",
+        "laravel-mix": "^6.0.6",
+        "lodash": "^4.17.19",
+        "postcss": "^8.1.14",
+        "resolve-url-loader": "^5.0.0",
+        "sass-loader": "^12.1.0"
+    },
+    "dependencies": {
+        "@fullcalendar/bootstrap5": "^5.11.3",
+        "@fullcalendar/core": "^5.11.3",
+        "@fullcalendar/daygrid": "^5.11.3",
+        "@fullcalendar/google-calendar": "^5.11.3",
+        "@fullcalendar/interaction": "^5.11.3",
+        "@fullcalendar/list": "^5.11.3",
+        "@popperjs/core": "^2.11.5",
+        "mdb-data-parser": "git+https://oauth2:_iurMqJhAgwtyTe6br2E@git.mdbootstrap.com/mdb/standard/plugins/prd/data-parser",
+        "mdb-file-upload": "git+https://oauth2:_iurMqJhAgwtyTe6br2E@git.mdbootstrap.com/mdb/standard/plugins/prd/file-upload",
+        "mdb-ui-kit": "git+https://oauth2:_iurMqJhAgwtyTe6br2E@git.mdbootstrap.com/mdb/standard/mdb-ui-kit-pro-advanced",
+        "mdb-wysiwyg-editor": "git+https://oauth2:_iurMqJhAgwtyTe6br2E@git.mdbootstrap.com/mdb/standard/plugins/prd/wysiwyg-editor",
+        "quill": "^1.3.6",
+        "sass": "^1.53.0"
+    }
+}

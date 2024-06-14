@@ -1,0 +1,140 @@
+// Animations
+
+// Keyframes
+@keyframes fadeFromBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fadeFromTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fadeFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fadeFromRight {
+    0% {
+        opacity: 0;
+        transform: translateX(200%);
+    }
+    100% {
+        opacity: 1;
+    }
+}
+// Animation Classes
+.fade-from-tp-2s {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-name: fadeFromTop;
+}
+.fade-from-bt-2s {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-name: fadeFromBottom;
+}
+.fade-from-bt-2s25 {
+    animation-duration: 2.25s;
+    animation-fill-mode: both;
+    animation-name: fadeFromBottom;
+}
+.fade-from-bt-2s5 {
+    animation-duration: 2.5s;
+    animation-fill-mode: both;
+    animation-name: fadeFromBottom;
+}
+.fade-from-bt-3s {
+    animation-duration: 3s;
+    animation-fill-mode: both;
+    animation-name: fadeFromBottom;
+}
+.fade-from-lt-2s {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-name: fadeFromLeft;
+}
+.fade-from-rt-2s {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-name: fadeFromRight;
+}
+.fade-from-lt-2s1d {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-name: fadeFromLeft;
+    animation-delay: 1s;
+}
+.fade-from-rt-2s1d {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-name: fadeFromRight;
+    animation-delay: 1s;
+}
+.fade-from-rt-2s1d25 {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-name: fadeFromRight;
+    animation-delay: 1.25s;
+}
+.fade-from-lt-2s1d25 {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-name: fadeFromLeft;
+    animation-delay: 1.25s;
+}
+.fade-from-rt-2s1d05 {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-name: fadeFromRight;
+    animation-delay: 1.5s;
+}
+.fade-from-lt-2s1d05 {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-name: fadeFromLeft;
+    animation-delay: 1.5s;
+}
+.fade-from-lt-2s2d {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-name: fadeFromLeft;
+    animation-delay: 2s;
+}
+.fade-from-rt-2s {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-name: fadeFromRight;
+}
+.fade-from-rt-2s2d {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-name: fadeFromRight;
+    animation-delay: 2s;
+}
+.fade-from-lt-2s2d5 {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-name: fadeFromLeft;
+    animation-delay: 2.5s;
+}
+.fade-from-rt-2s2d5 {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-name: fadeFromRight;
+    animation-delay: 2.5s;
+}
