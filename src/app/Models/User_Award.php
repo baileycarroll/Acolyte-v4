@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class User_Award extends Model
 {
     use HasFactory;
-
+    protected $table = 'user_awards';
     public function users() {
         return $this->belongsTo(User::class);
     }
@@ -25,5 +25,14 @@ class User_Award extends Model
             ->toArray();
         return array_values($users);
 
+    }
+    public static function getUsersAwards($user){
+        $awards = DB::table('user_awards')
+            ->leftJoin('awards', 'user_awards.award', '=', 'awards.id')
+            ->where('user_awards.user', '=', $user)
+            ->select('awards.id', 'awards.name', 'awards.description', 'user_awards.updated_at')
+            ->get()
+            ->toArray();
+        return array_values($awards);
     }
 }

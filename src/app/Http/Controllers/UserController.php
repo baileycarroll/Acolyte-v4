@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User_Content;
 use Illuminate\Http\Request;
 use App\Models\User;
 class UserController extends Controller
@@ -46,7 +47,4 @@ class UserController extends Controller
         User::find($user_id)->assignRole($role_id);
         return redirect("/user_information/{$user_id}")->with('status', 'User Role(s) Updated');
     }
-//    Getting User information from the DB for the search bar:
-//    User::where("first_name", "like", "%coly%")->orWhere("last_name", "like", "%aile%")->get()
-//    I can chain together orwhere for global scopes and allow searching of several fields.
 }

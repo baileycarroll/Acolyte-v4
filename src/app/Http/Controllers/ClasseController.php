@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Classes;
+use App\Models\Content_Type;
 use Illuminate\Http\Request;
 
 class ClasseController extends Controller
@@ -18,6 +19,7 @@ class ClasseController extends Controller
         $class->learning_style = $request->learning_style;
         $class->status = 'Pending';
         $class->content_path = 'N/A';
+        $class->content_type = Content_Type::where('name', '=', 'Class')->first()->id;
         $class->save();
         return redirect('/classes')->with('status', 'Class Created!');
     }

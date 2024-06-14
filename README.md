@@ -1,7 +1,7 @@
 # Acolyte LMS
 
 ## WARNING:
-v2.1.0 does not currently function, I was working with a populated database and had not programmed in the nullsafe operators for the discussions model. So the home page will fail to load due to this. 
+v2.2.0 does not currently function, I messed up the DB migrations and there are issues getting the tables to migrate appropriately.
 
 # Intro
 

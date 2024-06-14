@@ -28,8 +28,8 @@
                         </div>
                         <div class="col">
                             <label for="status">Status:</label>
-                            <select name="status" id="status" class="form-select">
-                                <option value="{{$class->status}}" selected>Selected: {{$class->status}}</option>
+                            <select name="status" id="status" class="select" data-mdb-filter="true">
+                                 <option value="{{$class->status}}" selected>Selected: {{$class->status}}</option>
                                 <option value="Active">Active</option>
                                 <option value="Pending">Pending</option>
                                 <option value="Suspended">Suspended</option>
@@ -45,7 +45,7 @@
                     <div class="row g-3">
                         <div class="col">
                             <label for="category">Select Category:</label>
-                            <select name="category" id="category" class="form-select" aria-label="select-category" required>
+                            <select name="category" id="category" class="select" data-mdb-filter="true" aria-label="select-category" required>
                                 <option value="{{$class->category_1}}" selected>Selected: {{$class->category_name}}</option>
                                 @foreach($categorys as $category)
                                     <option value="{{$category->id}}">{{$category->name}}</option>
@@ -54,7 +54,7 @@
                         </div>
                         <div class="col">
                             <label for="department">Select Department:</label>
-                            <select name="department" id="department" class="form-select" aria-label="select-department" required>
+                            <select name="department" id="department" class="select" data-mdb-filter="true" aria-label="select-department" required>
                                 <option value="{{$class->department}}" selected>Selected: {{$class->department_name}}</option>
                                 @foreach($departments as $department)
                                     <option value="{{$department->id}}">{{$department->name}}</option>
@@ -65,7 +65,7 @@
                     <div class="row g-3">
                         <div class="col">
                             <label for="instructor">Select Instructor:</label>
-                            <select name="instructor" id="instructor" class="form-select" aria-label="select-instructor" required>
+                            <select name="instructor" id="instructor" class="select" data-mdb-filter="true" aria-label="select-instructor" required>
                                 <option value="{{$class->instructor}}" selected>Selected: {{$class->instructor_fname}} {{$class->instructor_lname}}</option>
                                 @foreach($instructors as $instructor)
                                     <option value="{{$instructor->id}}">{{$instructor->first_name}} {{$instructor->last_name}}</option>
@@ -74,7 +74,7 @@
                         </div>
                         <div class="col">
                             <label for="learning_style">Select Learning Style:</label>
-                            <select name="learning_style" id="learning_style" class="form-select" aria-label="select-learning_style" required>
+                            <select name="learning_style" id="learning_style" class="select" data-mdb-filter="true" aria-label="select-learning_style" required>
                                 <option value="{{$class->learning_style}}" selected>Selected: {{$class->ls_name}}</option>
                                 @foreach($learning_styles as $learning_style)
                                     <option value="{{$learning_style->id}}">{{$learning_style->name}}</option>
@@ -222,7 +222,7 @@
                                         <input type="hidden" name="quiz_id" value="{{$quiz->id}}">
                                         <h3 class="text-primary text-center">{{$class->name}} Quiz</h3>
                                         <label for="num_questions">Number of Question? <small>Minimum is 3</small></label>
-                                        <select name="num_questions" id="num_questions" class="form-select" required>
+                                        <select name="num_questions" id="num_questions" class="select" data-mdb-filter="true" required>
                                             <option value="{{$quiz->num_questions}}">Selected: {{$quiz->num_questions}}</option>
                                             <option value="3">3</option>
                                             <option value="4">4</option>

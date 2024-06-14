@@ -16,7 +16,7 @@
                     <div class="row g-3">
                         <div class="col">
                             <label for="related_class_1">Related Class</label>
-                            <select name="related_class_1" id="related_class_1" class="form-select" aria-label="select-related_class_1" required>
+                            <select name="related_class_1" id="related_class_1" class="select" data-mdb-filter="true" data-mdb-container="#addDiscussionModal" aria-label="select-related_class_1" required>
                                 <option selected>Choose Class</option>
                                 @foreach($classes as $class)
                                     <option value="{{$class->id}}">{{$class->name}}</option>
@@ -27,7 +27,7 @@
                     <div class="row g-3">
                         <div class="col">
                             <label for="related_module">Related Module</label>
-                            <select name="related_module" id="related_module" class="form-select" aria-label="select-related_module" required>
+                            <select name="related_module" id="related_module" class="select" data-mdb-filter="true" data-mdb-container="#addDiscussionModal" aria-label="select-related_module" required>
                                 <option selected>Choose Module</option>
                                 @foreach($modules as $module)
                                     <option value="{{$module->id}}">{{$module->name}}</option>
@@ -36,7 +36,7 @@
                         </div>
                         <div class="col">
                             <label for="month">Month Available</label>
-                            <select name="month" id="month" class="form-select" aria-label="select-month" required>
+                            <select name="month" id="month" class="select" aria-label="select-month" required>
                                 <option selected>Choose Month for Discussion</option>
                                 <option value="0">January</option>
                                 <option value="1">February</option>

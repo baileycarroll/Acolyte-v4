@@ -10,7 +10,7 @@
     <!--Main layout-->
     <main style="margin-top: 58px">
         <div class="container-fluid pt-4 px-5">
-        <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-1 row-cols-xl-2 row-cols-xxl-3">
+            <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-1 row-cols-xl-2 row-cols-xxl-3">
                 <div class="col">
                     <div class="card mt-4">
                         <div class="card-header bg-primary py-2">
@@ -30,7 +30,7 @@
                             <h2 class="text-center text-light my-4">This Months Discussion!</h2>
                         </div>
                         <div class="card-body">
-                        <h3 class="text-primary text-center mb-2">{{$discussion->topic}}</h3>
+                            <h3 class="text-primary text-center mb-2">{{$discussion->topic}}</h3>
                             <p class="text-center">{{$discussion->information}}</p>
                         </div>
                     </div>

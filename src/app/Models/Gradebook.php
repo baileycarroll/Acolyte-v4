@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Gradebook extends Model
 {
@@ -58,6 +59,26 @@ class Gradebook extends Model
             return "No Graded Quizzes";
         }
         return $last_updated->updated_at;
+    }
+
+    public static function getTranscripts($user) {
+        $class_grades = DB::table('gradebook')
+            ->join('classes', 'classes.id', '=', 'gradebook.class')
+            ->where('gradebook.user', '=', $user)
+            ->select('classes.name', 'gradebook.grade', 'gradebook.updated_at');
+        $grades = DB::table('gradebook')
+            ->join('courses', 'courses.id', '=', 'gradebook.course')
+            ->where('gradebook.user', '=', $user)
+            ->select('courses.name', 'gradebook.grade', 'gradebook.updated_at')
+            ->union($class_grades)
+            ->get()
+            ->toArray();
+        return array_values($grades);
+    }
+    public static function calculateAverage($user) {
+        $count_grades = Gradebook::where('user', '=', $user)->count();
+        $sum_of_grades = Gradebook::where('user', '=', $user)->sum('grade');
+        return ($sum_of_grades / $count_grades);
     }
 
     public function users() {

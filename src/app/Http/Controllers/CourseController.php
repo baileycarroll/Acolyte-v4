@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Content_Type;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
@@ -17,6 +18,7 @@ class CourseController extends Controller
         $course->instructor = $request->instructor;
         $course->learning_style = $request->learning_style;
         $course->status = 'Pending';
+        $course->content_type = Content_Type::where('name', '=', 'Course')->first()->id;
         $course->save();
         return redirect('/courses')->with('status', 'Course Created!');
     }

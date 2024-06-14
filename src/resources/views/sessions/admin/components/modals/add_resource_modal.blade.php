@@ -12,7 +12,7 @@
                     <textarea name="add_resource_description" id="add_resource_description" cols="30" rows="10" class="form-control"></textarea>
 
                     <label for="#add_resource_type_select">Select Resource Type:</label>
-                    <select name="add_resource_type_select" id="add_resource_type_select" class="form-select">
+                    <select name="add_resource_type_select" id="add_resource_type_select" class="select" data-mdb-container="#addResourceModal" data-mdb-filter="true">
                         <option selected>Choose Resource Type</option>
                         @foreach($resource_types as $resource_type)
                             <option value="{{$resource_type->id}}">{{$resource_type->name}}</option>

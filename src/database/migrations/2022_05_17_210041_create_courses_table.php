@@ -26,6 +26,7 @@ return new class extends Migration
             $table->foreignId('category_1')->references('id')->on('categories');
             $table->foreignId('category_2')->nullable()->references('id')->on('categories');
             $table->foreignId('category_3')->nullable()->references('id')->on('categories');
+            $table->foreignId('content_type')->references('id')->on('content_types');
             $table->timestamps();
         });
     }

@@ -24,7 +24,7 @@
                         </div>
                         <div class="col">
                             <label for="status">Status:</label>
-                            <select name="status" id="status" class="form-select">
+                            <select name="status" id="status" class="select" data-mdb-filter="true">
                                 <option value="{{$module->status}}" selected>Selected: {{$module->status}}</option>
                                 <option value="Active">Active</option>
                                 <option value="Pending">Pending</option>

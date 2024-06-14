@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Discussions;
+use App\Models\discussions;
 use Illuminate\Http\Request;
 
 class DiscussionsController extends Controller

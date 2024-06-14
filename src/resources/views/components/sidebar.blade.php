@@ -6,7 +6,7 @@
     <div class="position-sticky">
         <div class="list-group list-group-flush mx-3 mt-4">
             <a
-                href="/"
+                href="/home"
                 class="list-group-item list-group-item-action py-2 ripple"
                 aria-current="true"
             >
@@ -63,7 +63,6 @@
                         class="list-group-item list-group-item-action py-2 ripple"
                     ><i class="fa-solid fa-people-group fa-fw me-3"></i><span>Discussions</span></a
                     >
-
                 @endif
                 @can('ViewSystem')
                     <a
@@ -93,12 +92,12 @@
                         class="list-group-item list-group-item-action py-2 ripple"
                     ><i class="fas fa-lock fa-fw me-3"></i><span>Roles</span></a
                     >
+                    @hasrole('Support')
                     <a
                         href="/permissions"
                         class="list-group-item list-group-item-action py-2 ripple"
                     ><i class="fa-solid fa-grip-dots fa-fw me-3"></i><span>Permissions</span></a
                     >
-                    @hasrole('Support')
                     <a
                         href="/setup_keys"
                         class="list-group-item list-group-item-action py-2 ripple"

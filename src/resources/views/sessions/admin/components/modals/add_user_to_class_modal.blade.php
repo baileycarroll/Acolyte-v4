@@ -5,7 +5,9 @@
                 @csrf
                 <div class="modal-body">
                     <h4 class="text-center text-primary">Add User To Class</h4>
-                    <select name="class" id="class" class="form-select">
+                    <label for="class">Class:</label>
+                    <input type="hidden" name="user" value="{{$user->id}}">
+                    <select name="class" id="class" class="select" data-mdb-container="#addUserToClassModal" data-mdb-filter="true">
                         <option>Choose Option</option>
                         @foreach($classes as $class)
                             <option value="{{$class->id}}">{{$class->name}}</option>

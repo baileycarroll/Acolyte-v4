@@ -2,15 +2,16 @@
 
 use App\Http\Controllers\AwardController;
 use App\Http\Controllers\CourseController;
-use App\Http\Controllers\GradebookController;
 use App\Http\Controllers\DiscussionsController;
+use App\Http\Controllers\GradebookController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserContentController;
 use App\Models\Award;
+use App\Models\Content_Type;
 use App\Models\Course;
-use App\Models\Discussions;
+use App\Models\discussions;
 use App\Models\Gradebook;
 use App\Models\Module;
 use App\Models\SetupKeys;
@@ -64,14 +65,7 @@ Route::group(['middleware'=>'role:Support'], function () {
     Route::post('/delete_permission', [PermissionsController::class, 'deletePermission']);
 });
 // Universal Views
-Route::get('/', function (){
-    if(Auth::check()){
-        return redirect('/home');
-    } else {
-        return redirect('/login');
-    }
-});
-
+// Will be added upon merging with customer base.
 
 // Register/Login
 Route::middleware('guest')->group( function() {
@@ -85,9 +79,8 @@ Route::middleware('guest')->group( function() {
 Route::middleware('auth')->group(function() {
     Route::get('/home', function () {
         return view('home', [
-        'instance_name' => SetupKeys::where('key', '=', 'instance_name')->first()->value,
+            'instance_name' => SetupKeys::where('key', '=', 'instance_name')->first()->value,
             'discussion' => discussions::where('month', '=', (date('n')-1))->first(),
-
     ]);
 });
     Route::post('/logout', [SessionController::class, 'logout']);
@@ -108,10 +101,12 @@ Route::middleware('auth')->group(function() {
             'user' => User::getUserInformation($id),
             'departments' => Department::getDepartments(),
             'licenses' => Licenses::getLicenses(),
+            'awards' => Award::all(),
             'learning_styles' => Learning_Style::getLearningStyles(),
             'user_roles' => User::find($id)->getRoleNames(),
             'roles' => Role::where('id', '!=', 1)->get(),
             'classes' =>Classes::all(),
+            'average_grade' => Gradebook::calculateAverage($id),
         ]);
     });
     Route::controller(UserController::class)->group(function () {
@@ -120,6 +115,8 @@ Route::middleware('auth')->group(function() {
         Route::post('/update_user', 'adminUpdateUser');
         Route::post('/user_add_role/{user_id}/{role_id}', 'addRole');
     });
+    Route::post('/add_user_to_class', [UserContentController::class, 'addUserToClass']);
+    Route::post('/give_award_to_user', [AwardController::class, 'giveAwardToUser']);
 
 //System Permissions
     Route::group(['middleware'=>['can:ViewSystem']], function() {
@@ -305,10 +302,12 @@ Route::middleware('auth')->group(function() {
         $file = Award::find($id)->filename;
         return view('sessions.admin.award_information', [
             'award' => Award::find($id),
+            'users' => User::all(),
             'image' => Storage::temporaryUrl("awards/$file", now()->addMinutes(10)),
         ]);
     });
     Route::post('/update_award', [AwardController::class, 'updateAward']);
+    Route::post('/add_award_to_user', [AwardController::class, 'addAwardToUser']);
 });
 
 // Course Management
@@ -388,13 +387,40 @@ Route::middleware('auth')->group(function() {
 
 // User Views
 Route::get('/catalog', function() {
-    return view('sessions.user.catalog', [
-        'courses' => Course::where("status", '=', 'Active')->get(),
-        'classes' => Classes::where("status", '=', 'Active')->get(),
-        'spotlight_course' => Course::where('spotlight', '=', 1)->first(),
-        'spotlight_class' => Classes::where('spotlight', '=', 1)->first(),
-        'user_contents' => User_Content::where('user', '=', Auth::id())->get()
-    ]);
+    if(request('content_type')) {
+        if(request('content_type') === 'Class'){
+            return view('sessions.user.catalog', [
+                'contents' => Classes::where("status", '=', 'Active')->get(),
+                'user_contents' => User_Content::where('user', '=', Auth::id())->get(),
+                'categories' => Category::all(),
+                'content_types' => Content_Type::all(),
+            ]);
+        } else {
+            return view('sessions.user.catalog', [
+                'contents' => Course::where("status", '=', 'Active')->get(),
+                'user_contents' => User_Content::where('user', '=', Auth::id())->get(),
+                'categories' => Category::all(),
+                'content_types' => Content_Type::all(),
+            ]);
+        }
+    } else
+    if(request('category')) {
+        return view('sessions.user.catalog', [
+            $courses = Course::where("status", '=', 'Active')->where('category_1', '=', request('category'))->orWhere('category_2', '=', request('category'))->orWhere('category_3', '=', request('category')),
+            'contents' => Classes::where("status", '=', 'Active')->where('category_1', '=', request('category'))->orWhere('category_2', '=', request('category'))->orWhere('category_3', '=', request('category'))->get()->merge($courses),
+            'user_contents' => User_Content::where('user', '=', Auth::id())->get(),
+            'categories' => Category::all(),
+            'content_types' => Content_Type::all(),
+        ]);
+    } else {
+        return view('sessions.user.catalog', [
+            $courses = Course::where("status", '=', 'Active'),
+            'contents' => Classes::where("status", '=', 'Active')->get()->merge($courses),
+            'user_contents' => User_Content::where('user', '=', Auth::id())->get(),
+            'categories' => Category::all(),
+            'content_types' => Content_Type::all(),
+        ]);
+    }
 });
 Route::post('/add_to_user_content', [UserContentController::class, 'addUserToContent']);
 
@@ -495,7 +521,7 @@ Route::get('/discussions', function() {
         'modules' => Module::all(),
     ]);
 });
-Route::get('discussions/read/{id}', function($id) {return view('sessions.admin.discussion_information_readonly', ['discussion' => Discussions::find($id), 'classes' => Classes::all(), 'modules' => Module::all()]);});
-Route::get('discussions/{id}', function($id) {return view('sessions.admin.discussion_information', ['discussion' => Discussions::find($id), 'classes' => Classes::all(), 'modules' => Module::all()]);});
+Route::get('discussions/read/{id}', function($id) {return view('sessions.admin.discussion_information_readonly', ['discussion' => discussions::find($id), 'classes' => Classes::all(), 'modules' => Module::all()]);});
+Route::get('discussions/{id}', function($id) {return view('sessions.admin.discussion_information', ['discussion' => discussions::find($id), 'classes' => Classes::all(), 'modules' => Module::all()]);});
 Route::post('/add_discussion', [DiscussionsController::class, 'createDiscussion']);
 Route::post('/update_discussion', [DiscussionsController::class, 'updateDiscussion']);

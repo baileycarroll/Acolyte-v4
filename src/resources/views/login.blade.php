@@ -11,7 +11,7 @@
         <div class="container-fluid h-100 py-4 mx-auto d-flex align-items-center justify-content-center">
             <div class="card">
                 <div class="card-body p-5 shadow-5 text-center">
-                    <h2 class="fw-bold mb-5">Log into <span class="text-primary">Acolyte R.E.A.L.M.S.</span></h2>
+                    <h2 class="fw-bold mb-5">Log into <span class="text-primary">{{\App\Models\SetupKeys::where('key', '=', 'instance_name')->first()->value}}</span></h2>
                     <form action="/login" method="POST">
                         @csrf
                         @error('username')

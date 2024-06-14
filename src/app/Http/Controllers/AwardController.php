@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Award;
+use App\Models\User;
+use App\Models\User_Award;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -40,5 +42,25 @@ class AwardController extends Controller
 
         $award->save();
         return redirect("/award_information/{$request->award_id}")->with('status', 'Award Updated!');
+    }
+    public function addAwardToUser(Request $request) {
+        if(User_Award::where('user', '=', $request->user)->where('award', '=', $request->award)->get()->isNotEmpty()) {
+            return redirect("/award_information/$request->award")->with('error', 'User Already Has Award...');
+        }
+        $user_award = new User_Award();
+        $user_award->user = $request->user;
+        $user_award->award = $request->award;
+        $user_award->save();
+        return redirect("/award_information/$request->award")->with('status', 'User Given Award');
+    }
+    public function giveAwardToUser(Request $request) {
+        if(User_Award::where('user', '=', $request->user)->where('award', '=', $request->award)->get()->isNotEmpty()) {
+            return redirect("/user_information/$request->user")->with('error', 'User Already Has Award...');
+        }
+        $user_award = new User_Award();
+        $user_award->user = $request->user;
+        $user_award->award = $request->award;
+        $user_award->save();
+        return redirect("/user_information/$request->user")->with('status', 'User Given Award');
     }
 }

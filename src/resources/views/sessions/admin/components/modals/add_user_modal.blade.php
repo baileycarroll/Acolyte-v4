@@ -38,7 +38,7 @@
                     <div class="row g-3">
                         <div class="col">
                             <label for="department">Select Department:</label>
-                            <select name="department" id="department" class="form-select" aria-label="select-department" required>
+                            <select name="department" id="department" class="select" data-mdb-filter="true" data-mdb-container="#addUserModal" aria-label="select-department" required>
                                 <option selected>Choose Department</option>
                                 @foreach($departments as $department)
                                     <option value="{{$department->id}}">{{$department->name}}</option>
@@ -49,7 +49,7 @@
                     <div class="row g-3">
                         <div class="col">
                             <label for="user_status">Select User Account Status:</label>
-                            <select name="user_status" id="user_status" class="form-select" required>
+                            <select name="user_status" id="user_status" class="select" data-mdb-filter="true" data-mdb-container="#addUserModal" required>
                                 <option selected>Choose Status</option>
                                 <option value="Active">Active</option>
                                 <option value="Suspended">Suspended</option>
@@ -59,7 +59,7 @@
                         </div>
                         <div class="col">
                             <label for="learning_style">Select Learning Style:</label>
-                            <select name="learning_style" id="learning_style" class="form-select" required>
+                            <select name="learning_style" id="learning_style" class="select" data-mdb-filter="true" data-mdb-container="#addUserModal" required>
                                 <option selected>Choose Learning Style</option>
                                 @foreach($learning_styles as $learning_style)
                                     <option value="{{$learning_style->id}}">{{$learning_style->name}}</option>
@@ -70,7 +70,7 @@
                     <div class="row g-3">
                         <div class="col">
                             <label for="license">Select License:</label>
-                            <select name="license" id="license" class="form-select" required>
+                            <select name="license" id="license" class="select" data-mdb-filter="true" data-mdb-container="#addUserModal" required>
                                 <option selected>Choose License</option>
                                 @foreach($licenses as $license)
                                     <option value="{{$license->id}}">{{$license->name}}</option>

@@ -28,7 +28,7 @@
                         </div>
                         <div class="col">
                             <label for="status">Status:</label>
-                            <select name="status" id="status" class="form-select">
+                            <select data-mdb-filter="true" name="status" id="status" class="select" >
                                 <option value="{{$course->status}}" selected>Selected: {{$course->status}}</option>
                                 <option value="Active">Active</option>
                                 <option value="Pending">Pending</option>
@@ -45,7 +45,7 @@
                     <div class="row g-3">
                         <div class="col">
                             <label for="category">Select Category:</label>
-                            <select name="category" id="category" class="form-select" aria-label="select-category">
+                            <select data-mdb-filter="true" name="category" id="category" class="select"  aria-label="select-category">
                                 <option value="{{$course->category_1}}" selected>Selected: {{$course->category_name}}</option>
                                 @foreach($categorys as $category)
                                     <option value="{{$category->id}}">{{$category->name}}</option>
@@ -54,7 +54,7 @@
                         </div>
                         <div class="col">
                             <label for="department">Select Department:</label>
-                            <select name="department" id="department" class="form-select" aria-label="select-department">
+                            <select data-mdb-filter="true" name="department" id="department" class="select"  aria-label="select-department">
                                 <option value="{{$course->department}}" selected>Selected: {{$course->department_name}}</option>
                                 @foreach($departments as $department)
                                     <option value="{{$department->id}}">{{$department->name}}</option>
@@ -65,7 +65,7 @@
                     <div class="row g-3">
                         <div class="col">
                             <label for="instructor">Select Instructor:</label>
-                            <select name="instructor" id="instructor" class="form-select" aria-label="select-instructor">
+                            <select data-mdb-filter="true" name="instructor" id="instructor" class="select"  aria-label="select-instructor">
                                 <option value="{{$course->instructor}}" selected>Selected: {{$course->instructor_fname}} {{$course->instructor_lname}}</option>
                                 @foreach($instructors as $instructor)
                                     <option value="{{$instructor->id}}">{{$instructor->first_name}} {{$instructor->last_name}}</option>
@@ -74,7 +74,7 @@
                         </div>
                         <div class="col">
                             <label for="learning_style">Select Learning Style:</label>
-                            <select name="learning_style" id="learning_style" class="form-select" aria-label="select-learning_style">
+                            <select data-mdb-filter="true" name="learning_style" id="learning_style" class="select"  aria-label="select-learning_style">
                                 <option value="{{$course->learning_style}}" selected>Selected: {{$course->ls_name}}</option>
                                 @foreach($learning_styles as $learning_style)
                                     <option value="{{$learning_style->id}}">{{$learning_style->name}}</option>

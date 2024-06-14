@@ -36,8 +36,8 @@
                                 <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-3">
                                     <div class="col">
                                         <label for="related_class_1">Related Class</label>
-                                        <select name="related_class_1" id="related_class_1" class="form-select" aria-label="select-related_class_1" required>
-                                            <option value="{{$discussion->related_class_1}}" selected>{{App\Models\Classes::find($discussion->related_class_1)->name}}</option>
+                                        <select name="related_class_1" id="related_class_1" class="select" data-mdb-filter="true" aria-label="select-related_class_1" required>
+                                            <option value="{{$discussion->related_class_1}}" selected>Selected: {{App\Models\Classes::find($discussion->related_class_1)->name}}</option>
                                             @foreach($classes as $class)
                                                 <option value="{{$class->id}}">{{$class->name}}</option>
                                             @endforeach
@@ -45,8 +45,8 @@
                                     </div>
                                     <div class="col">
                                         <label for="related_module">Related Module</label>
-                                        <select name="related_module" id="related_module" class="form-select" aria-label="select-related_module" required>
-                                            <option value="{{$discussion->related_module}}" selected>{{App\Models\Module::find($discussion->related_module)->name}}</option>
+                                        <select name="related_module" id="related_module" class="select" data-mdb-filter="true" aria-label="select-related_module" required>
+                                            <option value="{{$discussion->related_module}}" selected>Selected: {{App\Models\Module::find($discussion->related_module)->name}}</option>
                                             @foreach($modules as $module)
                                                 <option value="{{$module->id}}">{{$module->name}}</option>
                                             @endforeach

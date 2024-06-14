@@ -10,6 +10,16 @@
             <a href="/awards" class="text-decoration-none text-light">
                 <button class="btn btn-primary">Back to All Awards</button>
             </a>
+            @if(session('status'))
+                <div class="alert alert-success my-3">
+                    {{ session('status') }}
+                </div>
+            @endif
+            @if(session('error'))
+                <div class="alert alert-danger my-3">
+                    {{ session('error') }}
+                </div>
+            @endif
             <div class="card mt-4 text-center">
                 <form action="/update_award" method="post" enctype="multipart/form-data">
                     <div class="card-header py-3 text-light bg-primary display-6">{{$award->name}}</div>
@@ -49,7 +59,10 @@
             <div class="card mt-4 text-center">
                 <div class="card-header py-3 text-light bg-primary display-6">Users with {{$award->name}} Award</div>
                 <div class="card-body">
-                    <div class="d-flex justify-content-center mb-2">
+                    <div class="d-flex justify-content-between mb-2">
+                        <div class="align-self-start">
+                            <button class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#addAwardToUser">Add Award to User</button>
+                        </div>
                         <div class="align-self-center w-50">
                             <div class="form-outline">
                                 <input class="form-control rounded" type="search" id="award-user-search" placeholder="Search Users with Award" aria-label="Search Users with Award">
@@ -108,3 +121,4 @@
         });
     </script>
 @endsection
+@include('sessions.admin.components.modals.add_award_to_user_modal')

@@ -23,4 +23,14 @@ class UserContentController extends Controller
         }
         return redirect('/catalog');
     }
+    public function addUserToClass(Request $request){
+        if(User_Content::where('user', '=', $request->user)->where('class', '=', $request->class)->get()->isNotEmpty()){
+            return redirect("/user_information/{$request->user}")->with('error', 'User already has access to class...');
+        }
+        $new_content = new User_Content();
+        $new_content->user = $request->user;
+        $new_content->class = $request->class;
+        $new_content->save();
+        return redirect("/user_information/{$request->user}")->with('status', 'User added to class!');
+    }
 }

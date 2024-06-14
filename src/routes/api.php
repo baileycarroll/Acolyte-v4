@@ -6,6 +6,8 @@ use App\Models\Category;
 use App\Models\Classes;
 use App\Models\Course;
 use App\Models\Department;
+use App\Models\discussions;
+use App\Models\Gradebook;
 use App\Models\Learning_Style;
 use App\Models\Licenses;
 use App\Models\Module;
@@ -13,6 +15,7 @@ use App\Models\Resource_Types;
 use App\Models\SetupKeys;
 use App\Models\Student_Resources;
 use App\Models\User_Award;
+use App\Models\User_Content;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
@@ -55,6 +58,15 @@ Route::get('/getPermissions', function() {
 Route::get('/getUsersWithAward/{id}', function ($id) {
     return User_Award::getUsersWithAward($id);
 });
+Route::get('/getUserAwards/{user}', function($user) {
+   return User_Award::getUsersAwards($user);
+});
+Route::get('/getUserCourses/{user}', function($user) {
+    return User_Content::getUsersCourses($user);
+});
+Route::get('/getUserTranscripts/{user}', function($user) {
+   return Gradebook::getTranscripts($user);
+});
 // Classes
 Route::get('/getClasses', function() {
    return array_values(Classes::getClasses());
@@ -94,3 +106,5 @@ Route::get('/delete_class/{id}', function($id) {
    Classes::findorfail($id)->delete();
    return redirect('/classes')->with('status', 'Class Deleted');
 });
+// Discussions
+Route::get('/getDiscussions', function() {return array_values(discussions::all()->toArray());});
