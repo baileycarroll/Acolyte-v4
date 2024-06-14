@@ -1,5 +1,10 @@
 # Acolyte LMS
 
+## WARNING:
+v2.1.0 does not currently function, I was working with a populated database and had not programmed in the nullsafe operators for the discussions model. So the home page will fail to load due to this. 
+
+# Intro
+
 This is the second version of Acolyte, after years of growing my skillsets in web development I returned to Acolyte and said: "This is a really cool idea, I want to actually expand upon this and make it better." And so taking all of the knowledge that I gained I did expand upon it and came up with this design. 
 
 Leaving basic PHP, Bootstrap 4, and Custom CSS behind I moved towards using a couple of frameworks to extend my now much greater skillset. In this version I used the following frameworks:
