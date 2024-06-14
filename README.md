@@ -23,13 +23,14 @@ Since my skills have grown I have learned a variety of ways to improve my deploy
 8. Open an ssh connection to the app container one more time and run the following:
 
    + `php artisan key:generate`
+9. Now in src/storage/logs delete the laravel.log file.
 
-9. Now you can login and view the application with the following credentials:
+10. Now you can login and view the application with the following credentials:
 
    + **Username:** acolyte
    + **Password:** \[SUPPORT_PASSWORD\] as defined in your .env file.  
 
-10. The installation is extremely bare bones and the Digital Ocean spaces information will no longer work, so class video uploads / etc will no longer work. However for demonstrating the UI this will suffice. 
+11. The installation is extremely bare bones and the Digital Ocean spaces information will no longer work, so class video uploads / etc will no longer work. However for demonstrating the UI this will suffice. 
 
 ## Take Down
 Simply run `docker-compose --env-file ./src/.env down`.
