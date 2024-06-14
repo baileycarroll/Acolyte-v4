@@ -3,7 +3,7 @@
 
 # Intro
 
-Alrighty now we are really stepping into a bigger world! This is version 4.0.0 of Acolyte R.E.A.L.M.S., and largely one of my biggest achievements. I took everything that I learned over the years and compounded it into this platform. Remembering the blunders that were made in v3.0.0 and the missteps in v2.4.0 and below I was able to turn my MVP into something that was useable. This version of Acolyte was actually licensed out to a client of mine and was used until January 2024. 
+Alrighty now we are really stepping into a bigger world! This is version 4.0.2 of Acolyte R.E.A.L.M.S., and largely one of my biggest achievements. I took everything that I learned over the years and compounded it into this platform. Remembering the blunders that were made in v3.0.0 and the missteps in v2.4.0 and below I was able to turn my MVP into something that was useable. This version of Acolyte was actually licensed out to a client of mine in late 2022 and was used until January 2024. This version of Acolyte actually contains their front-end, so be careful not to post it in too many places.
 
 ## Setup
 Since my skills have grown I have learned a variety of ways to improve my deployment methods and now everything is deployable via Docker for easy replication and viewing. I learned from many mistakes that were made and even kept the migrations and base DB seeder included and use the .env file to keep passwords stored and secured.
@@ -23,13 +23,14 @@ Since my skills have grown I have learned a variety of ways to improve my deploy
 8. Open an ssh connection to the app container one more time and run the following:
 
    + `php artisan key:generate`
+9. Now in src/storage/logs delete the laravel.log file.
 
-9. Now you can login and view the application with the following credentials:
+10. Now you can login and view the application with the following credentials:
 
    + **Username:** acolyte
    + **Password:** \[SUPPORT_PASSWORD\] as defined in your .env file.  
 
-10. The installation is extremely bare bones and the Digital Ocean spaces information will no longer work, so class video uploads / etc will no longer work. However for demonstrating the UI this will suffice. 
+11. The installation is extremely bare bones and the Digital Ocean spaces information will no longer work, so class video uploads / etc will no longer work. However for demonstrating the UI this will suffice. 
 
 ## Take Down
 Simply run `docker-compose --env-file ./src/.env down`.
