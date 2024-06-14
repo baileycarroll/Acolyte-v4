@@ -7,6 +7,9 @@
             <div class="alert alert-success">
                 {{ session('status') }}
             </div>
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
         @endif
         <div class="container-fluid h-100 py-4 mx-auto d-flex align-items-center justify-content-center">
             <div class="card">

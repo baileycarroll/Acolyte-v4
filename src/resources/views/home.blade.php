@@ -24,17 +24,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card mt-4">
-                        <div class="card-header bg-primary py-2">
-                            <h2 class="text-center text-light my-4">This Months Discussion!</h2>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="text-primary text-center mb-2">{{$discussion->topic}}</h3>
-                            <p class="text-center">{{$discussion->information}}</p>
+                @if(!is_null($discussion))
+                    <div class="col">
+                        <div class="card mt-4">
+                            <div class="card-header bg-primary py-2">
+                                <h2 class="text-center text-light my-4">This Months Discussion!</h2>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="text-primary text-center mb-2">{{$discussion->topic}}</h3>
+                                <p class="text-center">{{$discussion->information}}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
             </div>
         </div>
     </main>
