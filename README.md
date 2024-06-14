@@ -1,7 +1,7 @@
 # Acolyte LMS
 
 ## WARNING:
-v2.3.0 does not currently function, I messed up the DB migrations and there are issues getting the tables to migrate appropriately.
+v2.4.0 does not currently function, I messed up the DB migrations and there are issues getting the tables to migrate appropriately.
 
 # Intro
 

@@ -65,9 +65,7 @@ Route::group(['middleware'=>'role:Support'], function () {
     Route::post('/delete_permission', [PermissionsController::class, 'deletePermission']);
 });
 // Universal Views
-Route::get('/', function (){ return view('utm-home');});
-Route::get('/about_us', function() {return view('/about_us');});
-Route::get('/our_events', function() {return view('/our_events');});
+// Will be added upon merging with customer base.
 
 // Register/Login
 Route::middleware('guest')->group( function() {
@@ -81,7 +79,8 @@ Route::middleware('guest')->group( function() {
 Route::middleware('auth')->group(function() {
     Route::get('/home', function () {
         return view('home', [
-        'instance_name' => SetupKeys::where('key', '=', 'instance_name')->first()->value, 'discussion' => discussions::where('month', '=', (date('n')-1))->first(),
+            'instance_name' => SetupKeys::where('key', '=', 'instance_name')->first()->value,
+            'discussion' => discussions::where('month', '=', (date('n')-1))->first(),
     ]);
 });
     Route::post('/logout', [SessionController::class, 'logout']);
