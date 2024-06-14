@@ -2,11 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Content_Types;
 use App\Models\Department;
-use App\Models\Learning_Style;
+use App\Models\Learning_Styles;
 use App\Models\Licenses;
 use App\Models\SetupKeys;
 use App\Models\User;
+use Hamcrest\Core\Set;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -26,7 +28,7 @@ class DatabaseSeeder extends Seeder
         $department->save();
 
         // Learning Styles
-        $learning_style = new Learning_Style();
+        $learning_style = new Learning_Styles();
         $learning_style->name = "Unknown";
         $learning_style->save();
 
@@ -34,9 +36,8 @@ class DatabaseSeeder extends Seeder
         $license = new Licenses();
         $license->name = "Trial";
         $license->description = "Trial License";
-        $license->length_days = 365;
         $license->price = 0;
-        $license->num_available = 100;
+        $license->stripe_api_id = 0;
         $license->trial = 1;
         $license->admin = 0;
         $license->save();
@@ -44,9 +45,8 @@ class DatabaseSeeder extends Seeder
         $license = new Licenses();
         $license->name = "Admin";
         $license->description = "Admin License";
-        $license->length_days = 0;
         $license->price = 0;
-        $license->num_available = 10;
+        $license->stripe_api_id = 0;
         $license->trial = 0;
         $license->admin = 1;
         $license->save();
@@ -174,6 +174,23 @@ class DatabaseSeeder extends Seeder
         $setup->key = "allow_module_retakes";
         $setup->value = "0";
         $setup->save();
+        $setup = new SetupKeys();
+        $setup->key = "Support_Email";
+        $setup->value = "helpdesk@pattisparadoxes.com";
+        $setup->save();
+        $setup = new SetupKeys();
+        $setup->key = "use_subscriptions";
+        $setup->value = "0";
+        $setup->save();
+        $setup = new SetupKeys();
+        $setup->key = "use_custom_frontend";
+        $setup->value = "0";
+        $setup->save();
+        $setup = new SetupKeys();
+        $setup->key = "num_custom_links";
+        $setup->value = "0";
+        $setup->save();
+
 
         // Support User
         $user = new User();
@@ -185,10 +202,19 @@ class DatabaseSeeder extends Seeder
         $user->user_status = "Active";
         $user->username = "acolyte";
         $user->password = bcrypt(config('app.support_password'));
-        $user->learning_style = Learning_Style::where('name', '=', "Unknown")->first()->id;
+        $user->learning_style = Learning_Styles::where('name', '=', "Unknown")->first()->id;
         $user->license = Licenses::where('name', '=', "Admin")->first()->id;
         $user->license_ends = date('Y-m-d', strtotime(" +1 year"));
         $user->save();
         $user->assignRole('Support');
+        $user->createAsStripeCustomer();
+
+        // Content Types
+        $ct = new Content_Types();
+        $ct->name = 'Course';
+        $ct->save();
+        $ct = new Content_Types();
+        $ct->name = 'Class';
+        $ct->save();
     }
 }

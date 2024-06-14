@@ -67,7 +67,7 @@
                             `,
                             name: row.name,
                             description: row.description,
-                            resource_type: row.resource_type_name,
+                            resource_type: row.resource_type.name,
                             url: `<a href="${row.url}" target="_blank">${row.url}</a>`,
                             updated_at: new Date(row.updated_at).toLocaleString("en-US", {timeZoneName: "short"}),
                         })),

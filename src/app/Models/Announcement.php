@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Announcement extends Model
 {
-    use HasFactory;
 
     protected $fillable = [
         'content',
@@ -16,7 +15,7 @@ class Announcement extends Model
         'expiration',
     ];
 
-    public function department() {
+    public function department() :BelongsTo {
         return $this->belongsTo(Announcement::class);
     }
 }

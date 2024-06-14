@@ -1,3 +1,5 @@
+import quill from "./quill";
+
 require('./bootstrap');
 
 import FileUpload from "mdb-file-upload"
@@ -16,6 +18,10 @@ import googleCalendarPlugin from '@fullcalendar/google-calendar'
 window.googleCalendarPlugin = googleCalendarPlugin
 import bootstrap5Plugin from '@fullcalendar/bootstrap5'
 window.bootstrap5Plugin = bootstrap5Plugin
+
+require('./quill.js');
+
+window.Quill = quill;
 
 
 // Permissions Table

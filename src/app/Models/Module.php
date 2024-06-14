@@ -2,17 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Module extends Model
 {
-    use HasFactory;
-
-    public function gradebook() {
+    public function grades() :HasMany {
         return $this->hasMany(Gradebook::class);
     }
-    public function courses() {
+    public function course() :BelongsTo{
         return $this-> belongsTo(Course::class);
+    }
+    public function quiz() :HasOne {
+        return $this->hasOne(Quiz::class);
     }
 }

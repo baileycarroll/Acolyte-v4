@@ -38,15 +38,8 @@
                                                 </div>
                                             </div>
                                             <div class="col">
-                                                <label for="licence_duration">Duration:</label>
-                                                <div class="input-group flex-nowrap">
-                                                    <input type="number" name="license_days" class="form-control rounded mb-2" value="{{$license->length_days}}">
-                                                    <span class="input-group-text border-0">Days</span>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <label for="num_available">Licenses Available:</label>
-                                                <input type="number" name="license_available" id="license_available" class="form-control" value="{{$license->num_available}}">
+                                                <label for="stripe_api_id">Stripe API ID:</label>
+                                                <input type="text" name="stripe_api_id" id="stripe_api_id" class="form-control rounded mb-2" value="{{$license->stripe_api_id}}">
                                             </div>
                                         </div>
                                     </div>

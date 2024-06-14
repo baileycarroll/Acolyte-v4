@@ -1,12 +1,12 @@
 @extends('layout')
 @section('main')
-
+    @include('components.header')
     <!--Main layout-->
-    <main style="padding-left: 0; height: 100vh;">
+    <main class="bg-image-main" style="padding-left: 0; height: 100vh;">
         <div class="container-fluid h-100 py-4 mx-auto d-flex align-items-center justify-content-center">
             <div class="card">
                 <div class="card-body p-5 shadow-5 text-center">
-                    <h2 class="fw-bold mb-5">Register with <span class="text-primary">Acolyte R.E.A.L.M.S.</span></h2>
+                    <h2 class="fw-bold mb-5">Register with <span class="text-primary">{{\App\Models\SetupKeys::where('key', '=', 'instance_name')->first()->value}}</span></h2>
                     <form action="/register" method="POST">
                         @csrf
                         <!-- 2 column grid layout with text inputs for the first and last names -->
@@ -102,6 +102,14 @@
                             Sign up
                         </button>
                         <p class="mt-3"><small>Already have an account? <a href="/login">Login</a></small></p>
+                        <p class="mt-3">
+                            <small>
+                                By proceeding you agree to our
+                                <a href="/terms" target="_blank">Terms of Service</a>, our
+                                <a href="/privacy" target="_blank">Privacy Policy</a>,
+                                and utilization of cookies.
+                            </small>
+                        </p>
                     </form>
                 </div>
             </div>

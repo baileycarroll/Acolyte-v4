@@ -40,5 +40,9 @@
     "/css/fontawesome/webfonts/fa-v4compatibility.ttf": "/css/fontawesome/webfonts/fa-v4compatibility.ttf",
     "/css/fontawesome/webfonts/fa-v4compatibility.woff2": "/css/fontawesome/webfonts/fa-v4compatibility.woff2",
     "/css/fullcalendar.css": "/css/fullcalendar.css",
-    "/js/mdb.min.js": "/js/mdb.min.js"
+    "/js/mdb.min.js": "/js/mdb.min.js",
+    "/css/quill.snow.css": "/css/quill.snow.css",
+    "/css/quill.core.css": "/css/quill.core.css",
+    "/assets/favicon.ico": "/assets/favicon.ico",
+    "/favicon.ico": "/favicon.ico"
 }

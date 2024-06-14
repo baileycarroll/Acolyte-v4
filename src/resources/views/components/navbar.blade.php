@@ -22,7 +22,7 @@
             {{App\Models\SetupKeys::where("key", '=', 'instance_name')->first()->value}}
         </a>
         <!-- Right links -->
-        <ul class="navbar-nav ms-auto d-flex flex-row">
+        <ul class="navbar-nav ms-auto ms-sm-0 d-flex flex-row d-none d-md-block d-lg-block">
             <!-- Avatar -->
             <li class="nav-item dropdown">
                 <a
@@ -39,7 +39,7 @@
                     class="dropdown-menu dropdown-menu-end"
                     aria-labelledby="navbarDropdownMenuLink"
                 >
-{{--                    <li><a class="dropdown-item" href="#">My profile</a></li>--}}
+                    <li><a class="dropdown-item" href="/my_profile">My profile</a></li>
 {{--                    <li><a class="dropdown-item" href="#">Settings</a></li>--}}
                     <li>
                         <form action="/logout" method="POST" id="logout_form">

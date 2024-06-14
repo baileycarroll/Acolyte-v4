@@ -172,7 +172,7 @@
                     {
                         rows: data.map((row) => ({
                             ...row,
-                            actions: `<a href="/modules_information/read/${row.id}" class="text-decoration-none text-light"><button class="btn ms-2 btn-primary btn-floating btn-sm"><i class="fa-solid fa-info"></i></button></a>`,
+                            actions: `<a href="/module_information/read/${row.id}" class="text-decoration-none text-light"><button class="btn ms-2 btn-primary btn-floating btn-sm"><i class="fa-solid fa-info"></i></button></a>`,
                             name: row.name,
                             status: row.status,
                             available_on: row.available_on,

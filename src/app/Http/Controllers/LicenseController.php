@@ -13,9 +13,8 @@ class LicenseController extends Controller
         $license = new Licenses();
         $license->name = $request->license_name;
         $license->description = $request->license_description;
-        $license->length_days = $request->license_days;
+        $license->stripe_api_id = $request->stripe_api_id;
         $license->price = $request->license_price;
-        $license->num_available = $request->license_available;
         $license->trial = $license_trial;
         $license->admin = $license_admin;
         $license->save();
@@ -27,18 +26,25 @@ class LicenseController extends Controller
         $license = Licenses::findOrFail($request->license_id);
         $license->name = $request->license_name;
         $license->description = $request->license_description;
-        $license->length_days = $request->license_days;
+        $license->stripe_api_id = $request->stripe_api_id;
         $license->price = $request->license_price;
-        $license->num_available = $request->license_available;
         $license->trial = $license_trial;
         $license->admin = $license_admin;
         $license->save();
         return redirect('/licenses')->with('status', 'License Updated!');
     }
     public function deleteLicense(Request $request){
-        $license = Licenses::findOrFail($request->license_id);
-        $license->delete();
+        Licenses::findOrFail($request->license_id)->delete();
         return redirect('/licenses')->with('status', 'License Deleted!');
 
+    }
+    public static function showLicenses() {
+        return view('sessions.admin.licenses', ['licenses' => Licenses::all()]);
+    }
+    public static function licenseInformation($id) {
+        return view('sessions.admin.license_information', ['license' => Licenses::find($id)]);
+    }
+    public static function licenseInformationRead($id) {
+        return view('sessions.admin.license_information_readonly', ['license' => Licenses::find($id)]);
     }
 }

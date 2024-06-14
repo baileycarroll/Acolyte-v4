@@ -2,33 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User_Content extends Model
 {
-    use HasFactory;
     protected $table = 'user_content';
 
-    public static function getUsersCourses($user){
-        $courses = DB::table('courses')
-            ->leftJoin('user_content', 'user_content.course', '=', 'courses.id')
-            ->where('user_content.user', '=', $user)
-            ->select('courses.id', 'courses.name', 'courses.updated_at')
-            ->get()
-            ->toArray();
-        return array_values($courses);
+    public function users() :HasMany{
+        return $this->hasMany(User::class);
     }
-
-    public function user() {
-        return $this->belongsTo(User::class);
-    }
-    public function course() {
+    public function courses() :BelongsToMany {
         return $this->belongsToMany(Course::class);
     }
-    public function classes() {
+    public function classes() :BelongsToMany {
         return $this->belongsToMany(Classes::class);
     }
 }

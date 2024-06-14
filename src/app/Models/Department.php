@@ -2,34 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Department extends Model
 {
-    use HasFactory;
-
     protected $fillable = ['name'];
-
-    // Defining the relationship with other objects. Options are:
-    // hasOne, hasMany, belongsTo, belongsToMany
-    public function announcement() {
-        return $this->hasMany(Announcement::class);
-    }
-    public function classes() {
-        return $this->hasMany(Classes::class);
-    }
-    public function users() {
+    public function users() :HasMany {
         return $this->hasMany(User::class);
     }
-    public function courses() {
+    public function announcements() :HasMany {
+        return $this->hasMany(Announcement::class);
+    }
+    public function classes() :HasMany {
+        return $this->hasMany(Classes::class);
+    }
+    public function courses() :HasMany {
         return $this->hasMany(Course::class);
     }
-    public static function getDepartments() {
-        return Department::query()->select('id', 'name', 'updated_at')->paginate(10);
-    }
-    public static function getCountDepts() {
-        $numDepts = Department::all()->count();
-        return $numDepts;
-    }
+
 }

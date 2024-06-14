@@ -2,47 +2,45 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Course extends Model
 {
-    use HasFactory;
-
-    public static function getCourses() {
-        return Course::query()
-            ->leftJoin('categories', 'courses.category_1', '=', 'categories.id')
-            ->leftJoin('departments', 'courses.department', '=', 'departments.id')
-            ->leftJoin('users', 'courses.instructor', '=', 'users.id')
-            ->leftJoin('learning_styles', 'courses.learning_style', '=', 'learning_styles.id')
-            ->select('courses.id', 'courses.name', 'courses.excerpt', 'courses.status', 'departments.name as department_name', 'users.last_name as instructor_name', 'learning_styles.name as ls_name', 'courses.updated_at')->get()->toArray();
+    public function scopeFilter($query, array $filters) {
+        $query->when($filters['category'] ?? false, function($query, $category) {
+            $query->where("status", '=', 'Active')
+                ->where('category_1', '=', $category)
+                ->orWhere('category_2', '=', $category)
+                ->orWhere('category_3', '=', $category);
+        });
+        $query->when($filters['search'] ?? false, function($query, $search) {
+            $query->where('name', 'like', '%' . $search . '%')
+                ->where("status", '=', 'Active')
+                ->orWhere('excerpt', 'like', '%' . $search . '%')
+                ->orWhere('description', 'like', '%' . $search . '%');
+        });
     }
-    public static function getCoursesUpdateAdmin($id) {
-        return Course::query()
-            ->leftJoin('categories', 'courses.category_1', '=', 'categories.id')
-            ->leftJoin('departments', 'courses.department', '=', 'departments.id')
-            ->leftJoin('users', 'courses.instructor', '=', 'users.id')
-            ->leftJoin('learning_styles', 'courses.learning_style', '=', 'learning_styles.id')
-            ->select('courses.id', 'courses.name', 'courses.excerpt', 'courses.description' , 'courses.status', 'courses.learning_style', 'courses.department', 'departments.name as department_name', 'courses.instructor', 'users.first_name as instructor_fname', 'users.last_name as instructor_lname', 'learning_styles.name as ls_name', 'courses.category_1', 'categories.name as category_name', 'courses.updated_at')
-            ->where('courses.id', '=', $id)->first();
-    }
-
-    public function department() {
+    public function department() :BelongsTo {
         return $this->belongsTo(Department::class);
     }
-    public function users() {
-        return $this->belongsTo(User::class);
+    public function users() :HasManyThrough{
+        return $this->hasManyThrough(User_Content::class, User::class);
     }
-    public function learning_style() {
-        return $this->hasOne(Learning_Style::class);
+    public function learning_style() :HasOne {
+        return $this->hasOne(Learning_Styles::class);
     }
-    public function category() {
-        return $this->hasMany(Category::class);
+    public function categories() :BelongsToMany {
+        return $this->belongsToMany( Category::class);
     }
-    public function gradebook() {
+    public function gradebook() :HasMany {
         return $this->hasMany(Gradebook::class);
     }
-    public function content() {
-        return $this->hasMany(User_Content::class, 'course');
+    public function content_type() :BelongsTo {
+        return $this->belongsTo(Content_Types::class);
     }
 }

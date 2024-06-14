@@ -24,4 +24,13 @@ class CategoryController extends Controller
         $category->delete();
         return redirect('/categories')->with('status', 'Category Deleted!');
     }
+    public static function showCategories() {
+        return view('sessions.admin.categories', ['categories' => Category::all()]);
+    }
+    public static function categoryInformation($id) {
+        return view('sessions.admin.category_information', ['category' => Category::find($id)]);
+    }
+    public static function categoryInformationRead($id) {
+        return view('sessions.admin.category_information_readonly', ['category' => Category::find($id)]);
+    }
 }

@@ -3,9 +3,13 @@
         <h3 class="text-center text-white">System Actions</h3>
     </div>
     <div class="card-body">
-        <form action="/update_color_style" method="POST">
+        <form class="d-inline" action="/update_color_style" method="POST">
             @csrf
             <button class="btn btn-primary" type="submit">Refresh Primary Color</button>
+        </form>
+        <form action="/create_frontend_keys" method="post" class="d-inline">
+            @csrf
+            <button class="btn btn-primary" type="submit">Generate Custom Link Keys</button>
         </form>
     </div>
 </div>

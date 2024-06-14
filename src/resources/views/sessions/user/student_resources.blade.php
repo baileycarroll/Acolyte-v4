@@ -68,7 +68,7 @@
                                 ...row,
                                 name: row.name,
                                 description: row.description,
-                                resource_type: row.resource_type_name,
+                                resource_type: row.resource_type.name,
                                 url: `<button class="btn btn-primary rounded"><a href="${row.url}" class="text-light" target="_blank">View Content   <i class="fa-solid fa-arrow-up-right-from-square"></i></a></button>`,
                                 updated_at: new Date(row.updated_at).toLocaleString("en-US", {timeZoneName: "short"}),
                             })),

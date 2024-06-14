@@ -1,8 +1,8 @@
 @extends('layout')
 @section('main')
-
+<!-- @include('custom_front_ends.header') -->
     <!--Main layout-->
-    <main style="padding-left: 0; height: 100vh;">
+    <main class="bg-image-main" style="padding-left: 0; height: 100vh;">
         @if(session('status'))
             <div class="alert alert-success">
                 {{ session('status') }}
@@ -51,6 +51,14 @@
                             Log In
                         </button>
                         <p class="mt-3"><small>Don't have an account? <a href="/register">Register</a></small></p>
+                        <p class="mt-3">
+                            <small>
+                                By proceeding you agree to our
+                                <a href="/terms" target="_blank">Terms of Service</a>, our
+                                <a href="/privacy" target="_blank">Privacy Policy</a>,
+                                and utilization of cookies.
+                            </small>
+                        </p>
                     </form>
                 </div>
             </div>

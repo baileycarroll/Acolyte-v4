@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Resource_Types;
 use Illuminate\Http\Request;
 use App\Models\Student_Resources;
 
@@ -26,8 +27,13 @@ class StudentResourcesController extends Controller
         return redirect('/resources')->with('status', 'Resource Updated!');
     }
     public function deleteResource(Request $request){
-        $resource_type = Student_Resources::findOrFail($request->resource_id);
-        $resource_type->delete();
+        Student_Resources::findOrFail($request->resource_id)->delete();
         return redirect('/resources')->with('status', 'Resource Deleted!');
+    }
+    public static function showResources() {
+        return view('sessions.admin.resources', ['resources' => array_values(Student_Resources::all()->toArray()), 'resource_types' => Resource_Types::all()]);
+    }
+    public static function showStudentResources() {
+        return view('sessions.user.student_resources', ['resources' => array_values(Student_Resources::all()->toArray()), 'resource_types' => Resource_Types::all()]);
     }
 }

@@ -31,6 +31,9 @@ return [
     'env' => env('APP_ENV', 'production'),
     'GOOGLE_CALENDAR_API_KEY' => env('GOOGLE_CALENDAR_API_KEY', ''),
     'support_password' => env('SUPPORT_PASSWORD', ''),
+    'STRIPE_KEY' => env('STRIPE_KEY'),
+    'STRIPE_SECRET' => env('STRIPE_SECRET'),
+    'STRIPE_WEBHOOK_SECRET' => env('stripe_webhook_secret'),
 
     /*
     |--------------------------------------------------------------------------

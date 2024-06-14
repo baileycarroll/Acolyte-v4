@@ -12,8 +12,8 @@
                     <video src="{{ \Illuminate\Support\Facades\Storage::temporaryUrl($content, now()->addMinutes(10)) }}" controls controlsList="nodownload"></video>
                 </div>
                 <div class="border-top mt-2 py-2">
-                    <p><strong class="text-primary">Excerpt:</strong>{{$class->excerpt}}</p>
-                    <p><strong class="text-primary">Description:</strong>{{$class->description}}</p>
+                    <p><strong class="text-primary">Excerpt: </strong>{{$class->excerpt}}</p>
+                    <p><strong class="text-primary">Description: </strong>{{$class->description}}</p>
                 </div>
             </div>
         </div>
@@ -30,9 +30,6 @@
                             <li class="nav-item" role="presentation">
                                 <a href="#notes" class="nav-link active" id="notes_tab" data-mdb-toggle="pill" role="tab" aria-controls="notes" aria-selected="true">Notes</a>
                             </li>
-{{--                            <li class="nav-item" role="presentation">--}}
-{{--                                <a href="#related" class="nav-link" id="related_tab" data-mdb-toggle="pill" role="tab" aria-controls="related" aria-selected="true">Related Content</a>--}}
-{{--                            </li>--}}
                             @if($show_quiz != 0)
                                 <li class="nav-item" role="presentation">
                                     <a href="#quiz" class="nav-link" id="quiz_tab" data-mdb-toggle="pill" role="tab" aria-controls="quiz" aria-selected="true">Quiz</a>
@@ -94,6 +91,23 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mt-4">
+            <div class="card-header bg-primary">
+                <h2 class="text-center text-light">Related Content</h2>
+            </div>
+            <div class="card-body">
+                <div class="container p-2">
+                    <ul class="list-unstyled">
+                        @foreach($related_classes as $class)
+                            <li class="rounded shadow p-2">
+                                <a href="/class_catalog?search={{$class->name}}">{{$class->name}}</a><br />
+                                <sub><strong class="text-primary">Excerpt: </strong>{{$class->excerpt}}</sub>
+                            </li>
+                        @endforeach
+                        </ul>
                 </div>
             </div>
         </div>

@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Storage;
 class AwardController extends Controller
 {
     public function createAward(Request $request) {
-        $extension = $request->file('award-upload-file')->extension();
-        $filename = $request->name.'.'.$extension;
+        // Take uploaded file, if a proper file type proceed to upload to storage. Then Create the Award.
+        $filename = $request->name.'.'. $request->file('award-upload-file')->extension();
         Storage::putFileAs("awards", $request->file('award-upload-file'), $filename, 'public');
         $award = new Award();
         $award->name = $request->name;
@@ -23,23 +23,23 @@ class AwardController extends Controller
         return redirect('/awards')->with('status', 'Award Created!');
     }
     public function updateAward(Request $request) {
-        if ($request->file() != NULL) {
+        // If the request contains a file, then utilize the file uploads method and return.
+        if ($request->file()) {
             $extension = $request->file('file')->extension();
-            $filename = $request->name.'.'.$extension;
+            $filename = $request->name . '.' . $extension;
 
             $award = Award::findorfail($request->award_id);
             $award->name = $request->name;
             $award->description = $request->description;
             $award->filename = $filename;
-
             $award->save();
             Storage::putFileAs("awards", $request->file('file'), $filename, 'public');
             return redirect("/award_information/{$request->award_id}")->with('status', 'Award Updated!');
         }
+        // Update award without new file
         $award = Award::findorfail($request->award_id);
         $award->name = $request->name;
         $award->description = $request->description;
-
         $award->save();
         return redirect("/award_information/{$request->award_id}")->with('status', 'Award Updated!');
     }
@@ -62,5 +62,23 @@ class AwardController extends Controller
         $user_award->award = $request->award;
         $user_award->save();
         return redirect("/user_information/$request->user")->with('status', 'User Given Award');
+    }
+    public static function showAwards() {
+        return view('sessions.admin.awards', ['awards' => Award::all()]);
+    }
+    public static function awardInformationRead($id) {
+        $file = Award::find($id)->filename;
+        return view('sessions.admin.award_information_readonly', [
+            'award' => Award::find($id),
+            'image' => Storage::temporaryUrl("awards/$file.png", now()->addMinutes(10)),
+        ]);
+    }
+    public static function awardInformation($id) {
+        $file = Award::find($id)->filename;
+        return view('sessions.admin.award_information', [
+            'award' => Award::find($id),
+            'users' => User::all()->users,
+            'image' => Storage::temporaryUrl("awards/$file.png", now()->addMinutes(10)),
+        ]);
     }
 }

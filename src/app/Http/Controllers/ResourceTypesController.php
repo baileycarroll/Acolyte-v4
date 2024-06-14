@@ -24,4 +24,13 @@ class ResourceTypesController extends Controller
         $resource_type->delete();
         return redirect('/resource_types')->with('status', 'Resource Type Deleted!');
     }
+    public static function showResourceTypes() {
+        return view('sessions.admin.resource_types', ['resource_types' => Resource_Types::all()]);
+    }
+    public static function resourceTypeInformationRead($id) {
+        return view('sessions.admin.resource_types_information_readonly', ['resource_type' => Resource_Types::find($id)]);
+    }
+    public static function resourceTypeInformation($id) {
+        return view('sessions.admin.resource_types_information_readonly', ['resource_type' => Resource_Types::find($id)]);
+    }
 }
