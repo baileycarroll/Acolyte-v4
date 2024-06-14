@@ -1,0 +1,68 @@
+#GathWind {
+    font-size: 50px;
+}
+
+nav.dropdown-item:hover {
+    background-color: green;
+    color: white;
+    
+}
+
+body {
+    background-color: #b27006;
+    height: 100%;
+}
+
+nav {
+    background-color: #ffd480;
+    width: 100%;
+}
+.footer {
+    position: relative;
+    bottom: -1;
+    right: 0;
+    left: 0;
+    padding: 1rem;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: #ffd480;
+    color: black;
+    text-align: center;   
+}
+
+#regForm {
+    position: absolute;
+    top: 15rem;
+    height: 350px;
+    min-width: 600px;
+}
+
+#logBtn {
+    min-width: 200px;
+    background-color: #ffd480;
+}
+
+.push {
+    height: 60px;
+}
+.PageContent {
+    background-color: #253e3a;
+}
+
+a {
+    color: #cc9900;
+}
+
+
+#modules{
+    list-style-type: none;
+}
+
+.moduleBtn {
+    background-color: burlywood;
+}
+
+ul {
+    list-style-type: none;
+}

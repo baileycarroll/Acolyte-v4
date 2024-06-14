@@ -1,0 +1,6 @@
+src/.env
+src/.idea
+src/.well-known
+!docker/volumes/mysql
+docker/volumes/mysql/*
+!docker/volumes/mysql/.gitkeep
