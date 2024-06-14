@@ -1,13 +1,22 @@
-# Gathering W.I.N.D. (Witches In Nevada Desert)
+# Acolyte LMS
 
-This was the first version of Acolyte that was ever conceptualized for a client. I knew enough about programming and web development to make the things, however I didn't know any standards, conventions, or caveats to protecting the system. The styling is basic using Bootstrap 4 and custom CSS.
+This is the second version of Acolyte, after years of growing my skillsets in web development I returned to Acolyte and said: "This is a really cool idea, I want to actually expand upon this and make it better." And so taking all of the knowledge that I gained I did expand upon it and came up with this design. 
 
-This release is essentially v1.0.0 and while I keep it as a great starting point, I could have done better.
+Leaving basic PHP, Bootstrap 4, and Custom CSS behind I moved towards using a couple of frameworks to extend my now much greater skillset. In this version I used the following frameworks:
 
-### Note:
-This repository was updated to run in docker, and I had to get the DB structure from the source files as I didn't save the initial SQL... The changes made to this are very small in terms of what was changed from the original code and this version.
++ Laravel v9.11
++ MDBoostrap 4
++ FontAwesome
++ SaSS
 
-## Setup
+Using those above frameworks I was quickly able to expand upon the concept and get a viable MVP ready, however this was only the start of the journey. I was not as good at backend design and development at the time (let alone frontend) which caused me to make serious design errors that I wouldn't catch until I continued to grow and expand. At that point being far too late to resolve without a major version upgrade.
+
+## Setup at Time of Development (Jan 2021)
+Unlike Acolyte v1.0.0 setup for this system is much much easier, there is a shell script that is included that will install all the necessary dependencies on the VPS, and walk you through editing / creating the .env file for the entire program to run. 
+
+## Setup Now (2024)
+Since my skills have grown I have learned a variety of ways to improve my deployment methods and now everything is deployable via Docker for easy replication and viewing. I learned from many mistakes that were made and even kept the migrations and base DB seeder included and use the .env file to keep passwords stored and secured.
+
 1. Clone the repository
 2. From the root directory copy .env.example to .env and fill in. (See example changes below.)
 3. From the root directory run the following: `docker-compose --env-file ./src/.env up -d`
