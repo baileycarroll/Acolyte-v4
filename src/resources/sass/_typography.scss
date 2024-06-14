@@ -1,0 +1,71 @@
+// //Fonts
+// @font-face {
+//     font-family: Courgette;
+//     src: url('/resources/assets/fonts/Courgette/Courgette-Regular.ttf');
+// }
+// @font-face {
+//     font-family: Montserrat;
+//     src: url('/resources/assets/fonts/Montserrat/Static/Montserrat-Regular.ttf');
+// }
+
+// * {
+//     font-family: Montserrat;
+// }
+
+// h1 {
+//     font-family: Courgette;
+// }
+// h2 {
+//     font-family: Courgette;
+// }
+// h3 {
+//     font-family: Courgette;
+// }
+// h4 {
+//     font-family: Courgette;
+// }
+// h5 {
+//     font-family: Courgette;
+// }
+// h6 {
+//     font-family: Courgette;
+// }
+
+// .alt-font {
+//     font-family: Montserrat;
+// }
+
+
+//Font Sizes
+.ft-nav-brand {
+    font-size: 1.5rem;
+}
+
+.ft-nav {
+    font-size: 1.2rem;
+}
+
+
+//Pre-Login
+.main_heading {
+    font-size: 3.5rem;
+    &-text {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+}
+
+//Misc
+
+ul {
+    list-style-type: none;
+}
+
+.test-link {
+    &:hover {
+        text-decoration: none;
+    }
+}
+.purple-shadow {
+    box-shadow:  0 .5rem 2rem rgba($primary, 0.75);
+}

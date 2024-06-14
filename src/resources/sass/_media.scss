@@ -1,0 +1,7 @@
+//Image overlay stylings
+.img-overlay {
+    background-color: #000;
+    & img {
+        opacity: 0.6;
+    }
+}
