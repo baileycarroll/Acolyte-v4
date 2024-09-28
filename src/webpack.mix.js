@@ -12,8 +12,8 @@ const mix = require('laravel-mix');
  */
 mix.sourceMaps();
 mix.js('resources/js/app.js', 'public/js');
-mix.copy('node_modules/@fortawesome/fontawesome-pro/css', 'public/css/fontawesome/css');
-mix.copy('node_modules/@fortawesome/fontawesome-pro/webfonts', 'public/css/fontawesome/webfonts');
+//mix.copy('node_modules/@fortawesome/fontawesome-pro/css', 'public/css/fontawesome/css');
+//mix.copy('node_modules/@fortawesome/fontawesome-pro/webfonts', 'public/css/fontawesome/webfonts');
 mix.copy('node_modules/@fullcalendar/common/main.css', 'public/css/fullcalendar.css');
 mix.copy('node_modules/mdb-ui-kit/js/mdb.min.js', 'public/js/mdb.min.js');
 mix.copy('node_modules/quill/dist/quill.snow.css', 'public/css/quill.snow.css');
