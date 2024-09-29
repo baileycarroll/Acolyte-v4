@@ -9,6 +9,7 @@ class Student_Resources extends Model
 {
     protected $table = 'student_resources';
     protected $with = ['resource_type'];
+    protected $fillable = ['name', 'description', 'url', 'type'];
 
     public function resource_type() :BelongsTo {
         return $this->belongsTo('App\Models\Resource_Types', 'type');

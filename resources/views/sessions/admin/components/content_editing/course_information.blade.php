@@ -95,7 +95,7 @@
                 <h4 class="text-center text-light">Course Thumbnail</h4>
             </div>
             <div class="card-body text-center">
-                @if( \App\Http\Controllers\ContentController::verifyContentExists($filepath) == 1)
+                @if( \App\Http\Controllers\ContentController::verifyContentExists($course->name))
                     <div class="ratio ratio-16x9">
                         <img src="{{ \Illuminate\Support\Facades\Storage::temporaryUrl($filepath, now()->addMinutes(10))}}" alt="Course Thumbnail">
                     </div>

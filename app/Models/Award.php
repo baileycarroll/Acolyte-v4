@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Award extends Model
 {
+    protected $fillable = ['name', 'description', 'filename'];
     public function users() :HasManyThrough {
         return $this->hasManyThrough(User_Award::class, User::class);
     }

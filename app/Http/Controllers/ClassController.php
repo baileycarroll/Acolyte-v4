@@ -11,6 +11,7 @@ use App\Models\Quiz;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ClassController extends Controller
 {
@@ -95,6 +96,8 @@ class ClassController extends Controller
         ]);
     }
     public static function classInformationRead($id) {
+        $cdn = config('app.DO_CDN_ENDPOINT');
+        $className = Classes::find($id)->name;
         return view('sessions.admin.class_information_readonly', [
            'class' => self::getClassesUpdateAdmin($id),
             'learning_styles' => Learning_Styles::all(),
@@ -102,7 +105,7 @@ class ClassController extends Controller
             'categorys' => Category::all(),
             'instructors' => User::all(),
             'class_name' => str_replace(" ", "_", Classes::find($id)->name),
-            'thumb_filepath' => "thumbnails/classes/".Classes::find($id)->name."/".Classes::find($id)->name.".jpg",
+            'thumb_filepath' => Storage::temporaryUrl($cdn."thumbnails/classes/$className/$className.jpg", now()->addMinutes(10)),
             'filepath' => "classes/".str_replace(" ", "_", Classes::find($id)->name)."/".str_replace(" ", "_", Classes::find($id)->name).".mp4",
             'quizzes' => Quiz::all()->where('class_id', '=', $id),
             'avg_grade' => GradebookController::getAverageClassGrade($id),
@@ -110,6 +113,8 @@ class ClassController extends Controller
         ]);
     }
     public static function classInformation($id) {
+        $cdn = config('app.DO_CDN_ENDPOINT');
+        $className = Classes::find($id)->name;
         return view('sessions.admin.class_information', [
             'class' => self::getClassesUpdateAdmin($id),
             'learning_styles' => Learning_Styles::all(),
@@ -117,7 +122,7 @@ class ClassController extends Controller
             'categorys' => Category::all(),
             'instructors' => User::all(),
             'class_name' => str_replace(" ", "_", Classes::find($id)->name),
-            'thumb_filepath' => "thumbnails/classes/".Classes::find($id)->name."/".Classes::find($id)->name.".jpg",
+            'thumb_filepath' => Storage::temporaryUrl($cdn."thumbnails/classes/$className/$className.jpg", now()->addMinutes(10)),
             'filepath' => "classes/".str_replace(" ", "_", Classes::find($id)->name)."/".str_replace(" ", "_", Classes::find($id)->name).".mp4",
             'quizzes' => Quiz::all()->where('class_id', '=', $id),
             'avg_grade' => GradebookController::getAverageClassGrade($id),

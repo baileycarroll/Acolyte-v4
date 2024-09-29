@@ -93,9 +93,9 @@
                 <h4 class="text-center text-light">Class Thumbnail</h4>
             </div>
             <div class="card-body text-center">
-                @if( \App\Http\Controllers\ContentController::verifyContentExists($thumb_filepath) == 1)
+                @if( \App\Http\Controllers\ContentController::verifyContentExists($class->name))
                     <div class="ratio ratio-16x9">
-                        <img src="{{ \Illuminate\Support\Facades\Storage::temporaryUrl($thumb_filepath, now()->addMinutes(10))}}" alt="Class Thumbnail">
+                        <img src="{{ $thumb_filepath }}" alt="Class Thumbnail">
                     </div>
                     <form action="/upload_class_thumbnail" class="align-self-center mt-3" method="post" enctype="multipart/form-data">
                         @csrf
@@ -192,7 +192,7 @@
                                 </div>
                             </div>
                         </div>
-                        @if( \App\Http\Controllers\ContentController::verifyContentExists($filepath) == 1)
+                        @if( \App\Http\Controllers\ContentController::verifyContentExists($class->name))
                             <div class="ratio ratio-16x9">
                                 <video src="{{ \Illuminate\Support\Facades\Storage::temporaryUrl($filepath, now()->addMinutes(10)) }}" controls controlsList="nodownload"></video>
                             </div>

@@ -35,8 +35,8 @@ class ContentController extends Controller
         Storage::putFileAs("/thumbnails/classes/$request->class_name", $request->file('class_thumbnail'), $request->class_name.'.jpg');
         return redirect("/class_information/$request->class_id")->with('status', 'Thumbnail Updated!');
     }
-    public static function verifyContentExists($filepath) {
-        return Storage::exists($filepath) ? 1 : 0;
+    public static function verifyContentExists($className) {
+        return Storage::exists(config('app.DO_CDN_ENDPOINT')."thumbnails/classes/".$className."/".$className.".jpg");
     }
     public static function setSpotlightClass(Request $request) {
         $spotlight = Classes::find($request->id);

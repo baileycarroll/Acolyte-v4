@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Resource_Types extends Model
 {
     protected $table = 'resource_types';
+    protected $fillable = ['name'];
 
     public function resources() :HasMany {
         return $this->hasMany(Student_Resources::class);

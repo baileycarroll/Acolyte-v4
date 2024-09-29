@@ -50,15 +50,16 @@
                         >
                             Log In
                         </button>
-                        <p class="mt-3"><small>Don't have an account? <a href="/register">Register</a></small></p>
-                        <p class="mt-3">
-                            <small>
-                                By proceeding you agree to our
-                                <a href="/terms" target="_blank">Terms of Service</a>, our
-                                <a href="/privacy" target="_blank">Privacy Policy</a>,
-                                and utilization of cookies.
-                            </small>
+                        <p class="mt-3 mx-auto">
+                            This instance has three user accounts you can view. <br />
+                            The username and password for each of them are as follows.
                         </p>
+                        <ul class="mt-3 text-start">
+                            <li>Admin</li>
+                            <li>Instructor</li>
+                            <li>User</li>
+                        </ul>
+                        <p>Please note that all changes to the system will be reverted once every 2 hours.</p>
                     </form>
                 </div>
             </div>

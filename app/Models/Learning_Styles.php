@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Learning_Styles extends Model
 {
     protected $table = 'learning_styles';
+    protected $fillable = ['name', 'description'];
     public function users() :BelongsToMany {
         return $this->belongsToMany(User::class);
     }

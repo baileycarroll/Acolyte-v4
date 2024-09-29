@@ -81,6 +81,8 @@ class CourseController extends Controller
         ]);
     }
     public static function courseInformation($id) {
+        $cdn = config('app.DO_CDN_ENDPOINT');
+        $courseName = Course::find($id)->name;
         return view('sessions.admin.course_information', [
             'course' => self::getCoursesUpdateAdmin($id),
             'learning_styles' => Learning_Styles::all(),

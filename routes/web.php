@@ -54,16 +54,8 @@ Route::group(['middleware'=>'role:Support'], function () {
 // Universal Views
 Route::middleware('guest')->group( function() {
     Route::get('/', function () {return redirect('/login');});
-    // Route::get('/register', function () { return view('register');});
-    // Route::post('/register', [RegisterController::class, 'createUser']);
     Route::get('/login', function () {return view('login');});
     Route::post('/login', [SessionController::class, 'login'] );
-    // Route::get('/terms', function () {return view('terms_of_service');});
-    // Route::get('/privacy', function () {return view('privacy_policy');});
-    // Route::get('/about_us', function () {return view('custom_front_ends.about_us');});
-    // Route::get('/our_events', function () {return view('custom_front_ends.our_events');});
-    // Route::get('/why_we_are_here', function () {return view('custom_front_ends.why_we_are_here');});
-
 });
 
 

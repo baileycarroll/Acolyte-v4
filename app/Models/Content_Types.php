@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Content_Types extends Model
 {
     protected $table = 'content_types';
+    protected $fillable = ['name'];
     public function classes() :HasMany {
        return $this->hasMany(Classes::class);
     }
