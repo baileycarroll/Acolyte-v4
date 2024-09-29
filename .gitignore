@@ -1,19 +1,19 @@
-src/.env
-src/.idea
-src/.well-known
-src/.npmrc
-src/.styleci.yml
+.env
+.idea
+.well-known
+.npmrc
+.styleci.yml
 
-src/node_modules
-src/public/hot
-src/public/storage
-src/storage/*.key
-src/vendor
-src/.phpunit.result.cache
-src/Homestead.json
-src/Homestead.yaml
-src/npm-debug.log
-src/yarn-error.log
+node_modules
+public/hot
+public/storage
+storage/*.key
+vendor
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
 
 !docker/volumes/mysql
 docker/volumes/mysql/*
