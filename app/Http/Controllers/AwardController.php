@@ -75,10 +75,11 @@ class AwardController extends Controller
     }
     public static function awardInformation($id) {
         $file = Award::find($id)->filename;
+        $cdn_path = config('app.DO_CDN_ENDPOINT');
         return view('sessions.admin.award_information', [
             'award' => Award::find($id),
-            'users' => User::all()->users,
-            'image' => Storage::temporaryUrl("awards/$file.png", now()->addMinutes(10)),
+            'users' => User::all(),
+            'image' => Storage::temporaryUrl(  "$cdn_path/awards/$file", now()->addMinutes(10)),
         ]);
     }
 }

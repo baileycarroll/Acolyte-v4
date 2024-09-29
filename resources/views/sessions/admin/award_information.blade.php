@@ -35,7 +35,7 @@
                                     class="img-fluid"
                                     {{--                                    style="width: 400px;"--}}
                                 >
-                                <input type="file" name="file" id="file" class="form-control">
+                                <input type="file" name="file" id="file" class="form-control mt-4">
                                 <script>
                                     document.getElementById('file').addEventListener('input', (e) => {
                                         document.getElementById('file').text(document.getElementById('file').files[0].name);
