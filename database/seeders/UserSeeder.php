@@ -31,7 +31,6 @@ class UserSeeder extends Seeder
         $user->license_ends = date('Y-m-d', strtotime(" +1 year"));
         $user->save();
         $user->assignRole('Support');
-        $user->createAsStripeCustomer();
 
         // Basic User
         $user = new User();
@@ -48,7 +47,6 @@ class UserSeeder extends Seeder
         $user->license_ends = date('Y-m-d', strtotime(" +1 year"));
         $user->save();
         $user->assignRole('User');
-        $user->createAsStripeCustomer();
 
         // Instructor User
         $user = new User();
@@ -65,7 +63,6 @@ class UserSeeder extends Seeder
         $user->license_ends = date('Y-m-d', strtotime(" +1 year"));
         $user->save();
         $user->assignRole('Instructor');
-        $user->createAsStripeCustomer();
 
         // Admin User
         $user = new User();
@@ -82,6 +79,5 @@ class UserSeeder extends Seeder
         $user->license_ends = date('Y-m-d', strtotime(" +1 year"));
         $user->save();
         $user->assignRole('Administrator');
-        $user->createAsStripeCustomer();
     }
 }
