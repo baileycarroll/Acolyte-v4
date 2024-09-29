@@ -11,6 +11,6 @@ class Student_Resources extends Model
     protected $with = ['resource_type'];
 
     public function resource_type() :BelongsTo {
-        return $this->belongsTo(Resource_Types::class);
+        return $this->belongsTo('App\Models\Resource_Types', 'type');
     }
 }
