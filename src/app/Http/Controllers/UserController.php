@@ -102,7 +102,7 @@ class UserController extends Controller
         $users = DB::table('roles')
             ->leftJoin('model_has_roles', 'roles.id', '=', 'model_has_roles.role_id')
             ->leftJoin('users', 'users.id', '=', 'model_has_roles.model_id')
-            ->where('model_has_roles.model_type', '=', 'App\Models\User')
+            ->where('model_has_roles.model_type', '=', \App\Models\User::class)
             ->where('model_has_roles.role_id', '=', $id)
             ->select('users.id', 'users.first_name', 'users.last_name', 'users.email', 'users.phone', 'users.user_status')
             ->get()->toArray();
