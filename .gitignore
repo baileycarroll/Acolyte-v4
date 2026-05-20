@@ -14,7 +14,3 @@ src/Homestead.json
 src/Homestead.yaml
 src/npm-debug.log
 src/yarn-error.log
-
-!docker/volumes/mysql
-docker/volumes/mysql/*
-!docker/volumes/mysql/.gitkeep
