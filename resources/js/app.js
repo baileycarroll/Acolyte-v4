@@ -1,6 +1,9 @@
 import './bootstrap';
 import '../sass/main.scss';
-import 'mdb-ui-kit/js/mdb.min.js';
+import * as mdbModule from 'mdb-ui-kit/js/mdb.min.js';
+
+const mdb = mdbModule.default ?? mdbModule;
+window.mdb = mdb;
 
 import FileUpload from "mdb-file-upload"
 window.fileupload = FileUpload;
