@@ -6,7 +6,6 @@
 
         @include("components/navbar")
     </header>
-    <link rel="stylesheet" href="{{!! asset('css/fullcalendar.css')}}">
     <!--Main layout-->
     <main style="margin-top: 58px">
         <div class="container-fluid pt-4 px-5">

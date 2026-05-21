@@ -22,8 +22,16 @@ class MembershipController extends Controller
         ]);
     }
     public static function subscribeUser(Request $request) {
-        User::find(Auth::id())->addPaymentMethod($request->paymentMethod);
-        User::find(Auth::id())->newSubscription('acolyte', $request->stripe_product_api_id)->trialDays(15)->create($request->paymentMethod);
+        $attributes = $request->validate([
+            'paymentMethod' => ['required', 'string'],
+            'stripe_product_api_id' => ['required', 'string'],
+        ]);
+
+        User::find(Auth::id())
+            ->newSubscription('acolyte', $attributes['stripe_product_api_id'])
+            ->trialDays(15)
+            ->create($attributes['paymentMethod']);
+
         return redirect('/home');
     }
 

@@ -12,7 +12,7 @@
                     <label for="license_description">License Description:</label>
                     <input type="text" name="license_description" id="license_description" class="form-control mb-2" required>
 
-                    <label for="stripe_api_id">Stripe API ID:</label>
+                    <label for="stripe_api_id">Stripe Price ID:</label>
                     <input type="text" name="stripe_api_id" id="stripe_api_id" class="form-control mb-2" required>
 
                     <label for="license_price">License Price:</label>

@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>un-Traditional Magick: A place for any and all to learn magick, un-traditionally.</title>
     {{-- Custom CSS --}}
-    <link rel="stylesheet" href="/css/acolyte.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    @vite('resources/js/app.js')
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />
     {{-- FontAwesome 6 Pro --}}
     <link rel="stylesheet" href="/css/fontawesome/css/all.css">
 </head>
@@ -24,8 +24,5 @@
 </script>
 <body>
     @yield('main')
-    {{-- Including app.js --}}
-    <script src="{!! asset('js/mdb.min.js') !!}"></script>
-    <script src="{!! asset('js/app.js') !!}"></script>
 </body>
 </html>

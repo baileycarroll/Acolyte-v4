@@ -1,7 +1,6 @@
 @extends('layout')
 @section('main')
     @include('custom_front_ends.header')
-    <link rel="stylesheet" href="{{!! asset('css/fullcalendar.css')}}">
     <section>
         <div class="vh-100 bg-image-main bg-image d-flex justify-content-center align-items-start">
             <div class="container mt-5">

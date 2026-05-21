@@ -31,7 +31,7 @@
             {label: 'Actions', field: 'actions'},
             {label: 'Name', field: 'name'},
             {label: 'Description', field: 'description'},
-            {label: 'Stripe API ID', field: 'stripe_api_id'},
+            {label: 'Stripe Price ID', field: 'stripe_api_id'},
             {label: 'Price', field: 'price'},
             {label: 'Trial License?', field: 'trial'},
             {label: 'Admin License?', field: 'admin'},

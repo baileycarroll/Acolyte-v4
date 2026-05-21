@@ -131,17 +131,14 @@
                                                 <input class="form-control" type="text" name="card-holder-name" id="card-holder-name">
                                                 <label for="card-holder-name" class="form-label">Card Holder Name</label>
                                             </div>
-                                            {{--                                <input type="hidden" name="stripe_product_api_id" value="price_1MKtAMDjmfzU3OGgWBy30pag">--}}
                                             <input type="hidden" name="paymentMethod" id="paymentMethod" value="">
-                                            <div id="payment-element">
-                                                <!-- Elements will create input elements here -->
-                                            </div>
+                                            <div id="card-element"></div>
 
                                             <!-- We'll put the error messages in this element -->
                                             <div id="card-errors" role="alert"></div>
 
                                             <div class="text-center">
-                                                <button id="card-button" class="btn btn-primary w-50 mt-5">Submit Payment</button>
+                                                <button id="card-button" class="btn btn-primary w-50 mt-5" data-secret="{{$intent->client_secret}}">Submit Payment</button>
                                             </div>
                                         </form>
                                     </div>
@@ -155,44 +152,39 @@
     </div>
     @if(!DB::table('subscriptions')->where('user_id', '=', Auth::id())->get()->isNotEmpty())
         <script>
-            const stripe = Stripe("{{config('app.STRIPE_KEY')}}");
-            const options = {
-                clientSecret: "{{$intent->client_secret}}"
-            }
-            const elements = stripe.elements(options);
-            const cardElement = elements.create('payment');
-            cardElement.mount('#payment-element');
-
-            const cardHolderName = document.getElementById('card-holder-name').value;
+            const stripe = Stripe("{{ config('services.stripe.key') }}");
+            const cardHolderName = document.getElementById('card-holder-name');
             const cardButton = document.getElementById('card-button');
             const clientSecret = cardButton.dataset.secret;
+            const elements = stripe.elements();
+            const cardElement = elements.create('card');
+            cardElement.mount('#card-element');
+
             document.getElementById('payment-form').addEventListener('submit', async (e) => {
                 e.preventDefault();
-                const { setupIntent, error } = await stripe.confirmSetup({
-                        elements,
-                        confirmParams: {
-                            return_url: 'http://localhost:8000/home'
+                cardButton.disabled = true;
+
+                const { setupIntent, error } = await stripe.confirmCardSetup(
+                    clientSecret,
+                    {
+                        payment_method: {
+                            card: cardElement,
+                            billing_details: {
+                                name: cardHolderName.value,
+                            },
                         },
-                        redirect: "if_required",
                     }
                 );
 
                 if (error) {
                     let displayError = document.getElementById('card-errors');
                     displayError.textContent = error.message;
+                    cardButton.disabled = false;
                 } else {
-                    stripeTokenHandler(setupIntent);
-                }
-            });
-            function stripeTokenHandler(setupIntent) {
-                document.getElementById('paymentMethod').value = setupIntent.payment_method;
-                submitForm(1);
-            }
-            function submitForm($submit) {
-                if($submit === 1) {
+                    document.getElementById('paymentMethod').value = setupIntent.payment_method;
                     document.getElementById('payment-form').submit();
                 }
-            }
+            });
         </script>
     @endif
 @endsection

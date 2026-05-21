@@ -1,9 +1,5 @@
 @extends('layout')
 @section('main')
-    <script src="{!! asset('js/app.js') !!}"></script>
-    <link rel="stylesheet" href="{!! asset('css/quill.core.css') !!}">
-    <link rel="stylesheet" href="{!! asset('css/quill.snow.css') !!}">
-
     <header>
         @include("components/sidebar")
 
@@ -31,8 +27,10 @@
                                         <label for="subject" class="form-label">Subject</label>
                                     </div>
                                     <input type="hidden" name="author" value="{{\App\Models\User::find(Auth::id())->first_name}} {{\App\Models\User::find(Auth::id())->last_name}}">
-                                    <input type="hidden" id="body" name="body">
-                                    <div id="editor" class="mb-3 fs-4"></div>
+                                    <div class="form-outline mb-3">
+                                        <textarea name="body" id="body" class="form-control" rows="10"></textarea>
+                                        <label for="body" class="form-label">Message</label>
+                                    </div>
                                     <button type="submit" class="btn btn-primary rounded">Send Email!</button>
                                 </form>
                             </div>
@@ -41,23 +39,4 @@
                 </div>
         </div>
     </main>
-    <!-- Include the Quill library -->
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-    <script>
-        let toolbarOptions = [['bold', 'italic', 'underline'], ['link', 'image']];
-        let options = {
-            modules: {
-                toolbar: true
-            },
-            theme: 'snow'
-        };
-        let container = document.getElementById('editor');
-        let quill = new Quill(container, options);
-
-        document.getElementById('contact-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            document.getElementById('body').value = quill.root.innerHTML
-            document.getElementById('contact-form').submit()
-        })
-    </script>
 @endsection

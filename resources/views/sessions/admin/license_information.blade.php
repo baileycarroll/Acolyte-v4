@@ -38,7 +38,7 @@
                                                 </div>
                                             </div>
                                             <div class="col">
-                                                <label for="stripe_api_id">Stripe API ID:</label>
+                                                <label for="stripe_api_id">Stripe Price ID:</label>
                                                 <input type="text" name="stripe_api_id" id="stripe_api_id" class="form-control rounded mb-2" value="{{$license->stripe_api_id}}">
                                             </div>
                                         </div>

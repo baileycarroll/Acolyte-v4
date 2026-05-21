@@ -10,7 +10,7 @@ Since my skills have grown I have learned a variety of ways to improve my deploy
 
 1. Clone the repository
 2. From the root directory copy .env.example to .env and fill in. (See example changes below.)
-3. From the root directory run the following: `docker-compose --env-file ./src/.env up -d`
+3. Install frontend dependencies and build assets from the project root: `npm install && npm run build`
 4. Open an ssh connection to the app container and run the following command.
    
    + `composer install`
@@ -33,7 +33,7 @@ Since my skills have grown I have learned a variety of ways to improve my deploy
 11. The installation is extremely bare bones and the Digital Ocean spaces information will no longer work, so class video uploads / etc will no longer work. However for demonstrating the UI this will suffice. 
 
 ## Take Down
-Simply run `docker-compose --env-file ./src/.env down`.
+If you are using a separate container workflow, update those commands to match your local setup. The old `docker-compose --env-file ./src/.env ...` examples are no longer accurate for this repo layout.
 
 ## ENV Example
 ```dotenv

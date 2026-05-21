@@ -135,6 +135,8 @@ return [
 
     'enable_wildcard_permission' => false,
 
+    'testing' => env('PERMISSION_TESTING', false),
+
     'cache' => [
 
         /*

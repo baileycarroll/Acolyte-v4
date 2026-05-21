@@ -1,6 +1,6 @@
-import quill from "./quill";
-
-require('./bootstrap');
+import './bootstrap';
+import '../sass/main.scss';
+import 'mdb-ui-kit/js/mdb.min.js';
 
 import FileUpload from "mdb-file-upload"
 window.fileupload = FileUpload;
@@ -8,8 +8,8 @@ import Datatable from "mdb-data-parser"
 window.datatable = Datatable
 import Wysiwyg from "mdb-wysiwyg-editor"
 window.wysiwyg = Wysiwyg
-import { Calendar } from "@fullcalendar/core"
-window.Calendar = Calendar
+import { Calendar } from '@fullcalendar/core';
+window.Calendar = Calendar;
 import dayGridPlugin from '@fullcalendar/daygrid'
 window.dayGridPlugin = dayGridPlugin
 import listPlugin from '@fullcalendar/list'
@@ -18,10 +18,6 @@ import googleCalendarPlugin from '@fullcalendar/google-calendar'
 window.googleCalendarPlugin = googleCalendarPlugin
 import bootstrap5Plugin from '@fullcalendar/bootstrap5'
 window.bootstrap5Plugin = bootstrap5Plugin
-
-require('./quill.js');
-
-window.Quill = quill;
 
 
 // Permissions Table
