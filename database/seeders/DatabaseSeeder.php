@@ -107,7 +107,7 @@ class DatabaseSeeder extends Seeder
             'instance_name' => config('app.name'),
             'allow_class_retakes' => '0',
             'allow_module_retakes' => '0',
-            'Support_Email' => 'helpdesk@pattisparadoxes.com',
+            'Support_Email' => 'helpdesk@example.com',
             'use_subscriptions' => '0',
             'use_custom_frontend' => '0',
             'num_custom_links' => '0',
@@ -123,11 +123,11 @@ class DatabaseSeeder extends Seeder
 
         // Support User
         $user = User::updateOrCreate(
-            ['email' => 'support@pattisparadoxes.com'],
+            ['email' => 'support@example.com'],
             [
                 'first_name' => 'Acolyte',
                 'last_name' => 'Support',
-                'phone' => '775-470-2487',
+                'phone' => '555-555-5555',
                 'primary_department' => $department->id,
                 'user_status' => 'Active',
                 'username' => 'acolyte',
