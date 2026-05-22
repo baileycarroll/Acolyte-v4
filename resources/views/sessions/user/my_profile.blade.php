@@ -85,12 +85,16 @@
                                                 <h2 class="text-center text-light mb-4">Membership Details</h2>
                                             </div>
                                             <div class="card-body text-center">
-                                                @if($user->subscribed('acolyte'))
+                                                @if($user->bypassesSubscriptionGate())
+                                                    <h3 class="text-primary">Admin Access</h3>
+                                                    <p class="mb-0">This account bypasses learner subscription requirements.</p>
+                                                @elseif($user->hasActivePlatformSubscription('acolyte'))
                                                     <h3 class="text-success">Active!</h3>
                                                 @else
                                                     <h3 class="text-danger">Inactive!</h3>
                                                 @endif
-                                                @if(!DB::table('subscriptions')->where('user_id', '=', Auth::id())->get()->isNotEmpty())
+                                                @if($user->bypassesSubscriptionGate())
+                                                @elseif(!DB::table('subscriptions')->where('user_id', '=', Auth::id())->get()->isNotEmpty())
                                                     <button class="btn btn-primary mt-4" data-mdb-toggle="modal" data-mdb-target="#membershipProfileModal">Subscribe!</button>
                                                 @else
                                                     <button class="btn btn-primary mt-4"><a class="text-light" href="/manage_my_membership">Manage My Subscription</a></button>

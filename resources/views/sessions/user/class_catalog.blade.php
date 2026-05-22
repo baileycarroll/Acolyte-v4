@@ -41,40 +41,44 @@
             </div>
         </nav>
         <div class="container-fluid pt-4 px-5">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-8 mt-4">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-4 mt-4 g-4">
                 @if($classes->isNotEmpty() ?? false)
                     @foreach($classes as $class)
                         @if($class->status == 'Active')
-                            <div class="col mt-3">
-                                <div class="card">
+                            <div class="col d-flex">
+                                <div class="card catalog-card h-100 w-100">
                                     <div class="ratio ratio-16x9">
                                         <img
                                             src="{{ \Illuminate\Support\Facades\Storage::temporaryUrl("thumbnails/classes/".\App\Models\Classes::find($class->id)->name.'/'.\App\Models\Classes::find($class->id)->name.'.jpg', now()->addMinutes(10))}}"
                                             alt="Class Thumbnail"
-                                            class="rounded"
+                                            class="rounded w-100 h-100 object-fit-cover"
                                         >
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body d-flex flex-column">
                                         <h5 class="card-title text-center text-primary">{{$class->name}}</h5>
-                                        <p class="card-text">{{$class->description}}</p>
-                                        <div class="chip chip-outline btn-outline-primary text-primary fw-bold w-50" data-mdb-ripple-color="dark">{{\App\Models\Category::where('id', '=', $class->category_1)->first()->name}}</div>
-                                        @if(\App\Models\Category::where('id', '=', $class->category_2)->first())
-                                            <div class="chip chip-outline btn-outline-primary text-primary fw-bold w-50" data-mdb-ripple-color="dark">{{\App\Models\Category::where('id', '=', $class->category_2)->first()->name}}</div>
-                                        @endif
-                                        @if(\App\Models\Category::where('id', '=', $class->category_3)->first())
-                                            <div class="chip chip-outline btn-outline-primary text-primary fw-bold w-50" data-mdb-ripple-color="dark">{{\App\Models\Category::where('id', '=', $class->category_3)->first()->name}}</div>
-                                        @endif
+                                        <p class="card-text catalog-description">{{$class->description}}</p>
+                                        <div class="catalog-meta mt-auto">
+                                            <div class="catalog-chip-list">
+                                                <div class="chip chip-outline btn-outline-primary text-primary fw-bold catalog-chip" data-mdb-ripple-color="dark">{{\App\Models\Category::where('id', '=', $class->category_1)->first()->name}}</div>
+                                                @if(\App\Models\Category::where('id', '=', $class->category_2)->first())
+                                                    <div class="chip chip-outline btn-outline-primary text-primary fw-bold catalog-chip" data-mdb-ripple-color="dark">{{\App\Models\Category::where('id', '=', $class->category_2)->first()->name}}</div>
+                                                @endif
+                                                @if(\App\Models\Category::where('id', '=', $class->category_3)->first())
+                                                    <div class="chip chip-outline btn-outline-primary text-primary fw-bold catalog-chip" data-mdb-ripple-color="dark">{{\App\Models\Category::where('id', '=', $class->category_3)->first()->name}}</div>
+                                                @endif
+                                            </div>
+                                            @if($user_contents->where('class', '=', $class->id)->count() != 0)
+                                                <a class="btn btn-primary w-100 mt-3" href="/view_class/{{$class->id}}">View Content</a>
+                                            @else
+                                                <form action="/add_to_user_content" method="post" class="mt-3">
+                                                    @csrf
+                                                    <input type="hidden" name="type" value="class">
+                                                    <input type="hidden" name="class" value="{{$class->id}}">
+                                                    <button type="submit" class="btn btn-primary w-100">Sign Me Up!</button>
+                                                </form>
+                                            @endif
+                                        </div>
                                     </div>
-                                    @if($user_contents->where('class', '=', $class->id)->count() != 0)
-                                        <button class="btn btn-primary align-self-end mt-3 mb-2 mx-2"><a class="text-light" href="/view_class/{{$class->id}}">View Content</a></button>
-                                    @else
-                                        <form action="/add_to_user_content" method="post" class="align-self-end">
-                                            @csrf
-                                            <input type="hidden" name="type" value="class">
-                                            <input type="hidden" name="class" value="{{$class->id}}">
-                                            <button type="submit" class="btn btn-primary mt-3 mb-2 mx-2">Sign Me Up!</button>
-                                        </form>
-                                    @endif
                                 </div>
                             </div>
                         @endif

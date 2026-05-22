@@ -11,35 +11,31 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
 
 class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
-        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+        app(PermissionRegistrar::class)->forgetCachedPermissions();
 
-        // Departments
         $department = Department::firstOrCreate([
             'name' => 'Support',
         ]);
 
-        // Learning Styles
-        $learning_style = Learning_Styles::firstOrCreate([
+        $learningStyle = Learning_Styles::firstOrCreate([
             'name' => 'Unknown',
         ]);
 
-        // Licenses
         Licenses::updateOrCreate(
             ['name' => 'Trial'],
             [
                 'description' => 'Trial License',
                 'price' => 0,
-                'stripe_api_id' => 0,
+                'stripe_api_id' => '0',
                 'trial' => 1,
                 'admin' => 0,
             ]
@@ -50,13 +46,12 @@ class DatabaseSeeder extends Seeder
             [
                 'description' => 'Admin License',
                 'price' => 0,
-                'stripe_api_id' => 0,
+                'stripe_api_id' => '0',
                 'trial' => 0,
                 'admin' => 1,
             ]
         );
 
-        // Permissions
         $permissionNames = [
             'ViewSystem',
             'ViewDeptSystem',
@@ -94,13 +89,11 @@ class DatabaseSeeder extends Seeder
             Permission::firstOrCreate(['name' => $permissionName]);
         }
 
-        // Roles
         $supportRole = Role::firstOrCreate(['name' => 'Support']);
         $supportRole->syncPermissions(Permission::all());
         Role::firstOrCreate(['name' => 'User']);
         Role::firstOrCreate(['name' => 'Administrator']);
 
-        // Setup Keys
         $setupKeys = [
             'Primary Color' => '#73020c',
             'awards_at_class_complete' => '0',
@@ -120,8 +113,6 @@ class DatabaseSeeder extends Seeder
             );
         }
 
-
-        // Support User
         $user = User::updateOrCreate(
             ['email' => 'support@example.com'],
             [
@@ -132,18 +123,20 @@ class DatabaseSeeder extends Seeder
                 'user_status' => 'Active',
                 'username' => 'acolyte',
                 'password' => bcrypt(config('app.support_password')),
-                'learning_style' => $learning_style->id,
-                'license' => Licenses::where('name', '=', 'Admin')->first()->id,
-                'license_ends' => date('Y-m-d', strtotime(' +1 year')),
+                'learning_style' => $learningStyle->id,
+                'license' => Licenses::where('name', 'Admin')->value('id'),
+                'license_starts' => '2026-01-01',
+                'license_origin' => '2026-01-01',
+                'license_ends' => '2031-12-31',
             ]
         );
 
         $user->assignRole('Support');
+
         if (! $user->stripe_id && config('services.stripe.key') && config('services.stripe.secret')) {
             $user->createAsStripeCustomer();
         }
 
-        // Content Types
         Content_Types::firstOrCreate(['name' => 'Course']);
         Content_Types::firstOrCreate(['name' => 'Class']);
     }

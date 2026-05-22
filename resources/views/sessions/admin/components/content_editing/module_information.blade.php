@@ -143,10 +143,10 @@
                                 </div>
                             </div>
                         </div>
-                        @if($quizzes == NULL )
+                        @if($quizzes->isEmpty())
                             <h4 class="text-center">No Quiz Found!</h4>
                         @endif
-                        @if($quizzes != NULL)
+                        @if($quizzes->isNotEmpty())
                             @foreach($quizzes as $quiz)
                                 <div class="container">
                                     <form action="/update_module_quiz" method="POST">

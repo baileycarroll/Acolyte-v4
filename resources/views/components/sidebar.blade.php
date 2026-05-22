@@ -15,7 +15,7 @@
             </a>
             @if(\App\Models\User::find(Auth::id())->user_status == 'Active')
                 @if(!(\App\Models\SetupKeys::where('key', '=', 'use_subscriptions')->first()->value == 0))
-                    @if((\App\Models\User::find(Auth::id())->subscribed('acolyte')))
+                    @if((\App\Models\User::find(Auth::id())->hasActivePlatformAccess()))
                         @include('components.sidebar_content')
                     @endif
                 @else

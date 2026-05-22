@@ -104,7 +104,7 @@ class ClassController extends Controller
             'class_name' => str_replace(" ", "_", Classes::find($id)->name),
             'thumb_filepath' => "thumbnails/classes/".Classes::find($id)->name."/".Classes::find($id)->name.".jpg",
             'filepath' => "classes/".str_replace(" ", "_", Classes::find($id)->name)."/".str_replace(" ", "_", Classes::find($id)->name).".mp4",
-            'quizzes' => Quiz::all()->where('class_id', '=', $id),
+            'quizzes' => Quiz::where('class_id', '=', $id)->get(),
             'avg_grade' => GradebookController::getAverageClassGrade($id),
             'last_graded' => GradebookController::getLastClassGrade($id),
         ]);
@@ -119,7 +119,7 @@ class ClassController extends Controller
             'class_name' => str_replace(" ", "_", Classes::find($id)->name),
             'thumb_filepath' => "thumbnails/classes/".Classes::find($id)->name."/".Classes::find($id)->name.".jpg",
             'filepath' => "classes/".str_replace(" ", "_", Classes::find($id)->name)."/".str_replace(" ", "_", Classes::find($id)->name).".mp4",
-            'quizzes' => Quiz::all()->where('class_id', '=', $id),
+            'quizzes' => Quiz::where('class_id', '=', $id)->get(),
             'avg_grade' => GradebookController::getAverageClassGrade($id),
             'last_graded' => GradebookController::getLastClassGrade($id),
         ]);

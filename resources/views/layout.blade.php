@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>un-Traditional Magick: A place for any and all to learn magick, un-traditionally.</title>
+    <title>Acolyte v4 Demo</title>
     {{-- Custom CSS --}}
     @vite('resources/js/app.js')
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />

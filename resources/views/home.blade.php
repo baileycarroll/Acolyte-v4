@@ -34,7 +34,7 @@
                             </div>
                         </div>
                     </div>
-                @elseif(!(\App\Models\User::find(Auth::id())->subscribed('acolyte')) && (\App\Models\SetupKeys::where('key', '=', 'use_subscriptions')->first()->value == 1))
+                @elseif((!\App\Models\User::find(Auth::id())->hasActivePlatformAccess()) && (\App\Models\SetupKeys::where('key', '=', 'use_subscriptions')->first()->value == 1))
                     <div class="col">
                         <div class="card mt-4">
                             <div class="card-header bg-primary py-2">

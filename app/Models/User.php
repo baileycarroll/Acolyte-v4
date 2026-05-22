@@ -12,11 +12,12 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Laravel\Cashier\Billable;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -50,5 +51,36 @@ class User extends Authenticatable
     }
     public function license() :BelongsTo {
         return $this->belongsTo(Licenses::class);
+    }
+
+    public function bypassesSubscriptionGate(): bool
+    {
+        if ($this->hasAnyRole(['Support', 'Administrator'])) {
+            return true;
+        }
+
+        return Licenses::whereKey($this->getAttribute('license'))
+            ->where('admin', 1)
+            ->exists();
+    }
+
+    public function hasActivePlatformAccess(): bool
+    {
+        return $this->bypassesSubscriptionGate() || $this->hasActivePlatformSubscription('acolyte');
+    }
+
+    public function hasActivePlatformSubscription(string $subscriptionName = 'acolyte'): bool
+    {
+        $subscriptionColumn = Schema::hasColumn('subscriptions', 'type') ? 'type' : 'name';
+
+        return DB::table('subscriptions')
+            ->where('user_id', $this->getKey())
+            ->where($subscriptionColumn, $subscriptionName)
+            ->whereNotIn('stripe_status', ['incomplete_expired', 'unpaid'])
+            ->where(function ($query) {
+                $query->whereNull('ends_at')
+                    ->orWhere('ends_at', '>', now());
+            })
+            ->exists();
     }
 }

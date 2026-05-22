@@ -36,7 +36,7 @@ class ModuleController extends Controller
         return view('sessions.admin.module_information', [
             'module' => Module::findorfail($id),
             'filepath' => $filepath,
-            'quizzes' => Quiz::where('module_id', '=', $id)->first()->quiz ?? NULL,
+            'quizzes' => Quiz::where('module_id', '=', $id)->get(),
             'avg_grade' => GradebookController::getAverageModuleGrade($id),
             'last_graded' => GradebookController::getLastModuleGrade($id)
         ]);
@@ -47,7 +47,7 @@ class ModuleController extends Controller
         return view('sessions.admin.module_information_readonly', [
             'module' => Module::findorfail($id),
             'filepath' => $filepath,
-            'quizzes' => Quiz::where('module_id', '=', $id)->first()->quiz ?? NULL,
+            'quizzes' => Quiz::where('module_id', '=', $id)->get(),
             'avg_grade' => GradebookController::getAverageModuleGrade($id),
             'last_graded' => GradebookController::getLastModuleGrade($id)
         ]);
