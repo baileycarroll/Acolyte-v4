@@ -128,18 +128,9 @@ class DemoActivitySeeder extends Seeder
             ['user' => $users['sam.rivera@example.com'], 'course' => $courses['Leadership Foundations'], 'class' => null, 'last_accessed' => now()->subDays(2)->toDateString(), 'completed_on' => null],
             ['user' => $users['sam.rivera@example.com'], 'course' => $courses['Client Success Playbook'], 'class' => null, 'last_accessed' => now()->subDays(4)->toDateString(), 'completed_on' => now()->subDay()->toDateString()],
             ['user' => $users['sam.rivera@example.com'], 'course' => null, 'class' => $classes['Conflict Resolution Workshop'], 'last_accessed' => now()->subDays(3)->toDateString(), 'completed_on' => now()->subDays(2)->toDateString()],
-            ['user' => $users['jamie.chen@example.com'], 'course' => $courses['Platform Security Essentials'], 'class' => null, 'last_accessed' => now()->subDays(1)->toDateString(), 'completed_on' => null],
-            ['user' => $users['jamie.chen@example.com'], 'course' => $courses['Leadership Foundations'], 'class' => null, 'last_accessed' => now()->subDays(6)->toDateString(), 'completed_on' => now()->subDays(1)->toDateString()],
-            ['user' => $users['jamie.chen@example.com'], 'course' => null, 'class' => $classes['Quarterly Compliance Briefing'], 'last_accessed' => now()->subDays(1)->toDateString(), 'completed_on' => null],
-            ['user' => $users['taylor.nguyen@example.com'], 'course' => $courses['Client Success Playbook'], 'class' => null, 'last_accessed' => now()->subDays(7)->toDateString(), 'completed_on' => null],
-            ['user' => $users['taylor.nguyen@example.com'], 'course' => null, 'class' => $classes['Demo Platform Walkthrough'], 'last_accessed' => now()->subDays(5)->toDateString(), 'completed_on' => null],
-            ['user' => $users['riley.brooks@example.com'], 'course' => $courses['Platform Security Essentials'], 'class' => null, 'last_accessed' => now()->subDays(2)->toDateString(), 'completed_on' => now()->subDays(1)->toDateString()],
-            ['user' => $users['riley.brooks@example.com'], 'course' => $courses['Leadership Foundations'], 'class' => null, 'last_accessed' => now()->subDays(8)->toDateString(), 'completed_on' => null],
-            ['user' => $users['riley.brooks@example.com'], 'course' => null, 'class' => $classes['Sales Discovery Lab'], 'last_accessed' => now()->subDays(3)->toDateString(), 'completed_on' => now()->subDays(2)->toDateString()],
-            ['user' => $users['casey.patel@example.com'], 'course' => $courses['Leadership Foundations'], 'class' => null, 'last_accessed' => now()->subDays(2)->toDateString(), 'completed_on' => null],
-            ['user' => $users['casey.patel@example.com'], 'course' => null, 'class' => $classes['Conflict Resolution Workshop'], 'last_accessed' => now()->subDays(9)->toDateString(), 'completed_on' => null],
-            ['user' => $users['devon.kim@example.com'], 'course' => $courses['New Hire Orientation Journey'], 'class' => null, 'last_accessed' => now()->subDays(30)->toDateString(), 'completed_on' => null],
-            ['user' => $users['devon.kim@example.com'], 'course' => null, 'class' => $classes['Archived Town Hall Session'], 'last_accessed' => now()->subDays(60)->toDateString(), 'completed_on' => null],
+            ['user' => $users['sam.rivera@example.com'], 'course' => $courses['Platform Security Essentials'], 'class' => null, 'last_accessed' => now()->subDay()->toDateString(), 'completed_on' => null],
+            ['user' => $users['sam.rivera@example.com'], 'course' => null, 'class' => $classes['Quarterly Compliance Briefing'], 'last_accessed' => now()->subDays(5)->toDateString(), 'completed_on' => null],
+            ['user' => $users['sam.rivera@example.com'], 'course' => null, 'class' => $classes['Demo Platform Walkthrough'], 'last_accessed' => now()->subDays(6)->toDateString(), 'completed_on' => null],
         ];
 
         foreach ($enrollments as $enrollment) {
@@ -188,12 +179,12 @@ class DemoActivitySeeder extends Seeder
             ['user' => $users['sam.rivera@example.com'], 'class' => $classes['Conflict Resolution Workshop'], 'course' => null, 'module' => null, 'grade' => 94],
             ['user' => $users['sam.rivera@example.com'], 'class' => null, 'course' => $courses['Client Success Playbook'], 'module' => $modules['Onboarding Signals and Triggers'], 'grade' => 88],
             ['user' => $users['sam.rivera@example.com'], 'class' => null, 'course' => $courses['Client Success Playbook'], 'module' => $modules['Renewal Readiness Conversations'], 'grade' => 91],
-            ['user' => $users['jamie.chen@example.com'], 'class' => null, 'course' => $courses['Leadership Foundations'], 'module' => $modules['Leading Through Change'], 'grade' => 96],
-            ['user' => $users['jamie.chen@example.com'], 'class' => $classes['Quarterly Compliance Briefing'], 'course' => null, 'module' => null, 'grade' => 84],
-            ['user' => $users['riley.brooks@example.com'], 'class' => $classes['Sales Discovery Lab'], 'course' => null, 'module' => null, 'grade' => 90],
-            ['user' => $users['riley.brooks@example.com'], 'class' => null, 'course' => $courses['Platform Security Essentials'], 'module' => $modules['Secure Customer Messaging'], 'grade' => 98],
-            ['user' => $users['riley.brooks@example.com'], 'class' => null, 'course' => $courses['Platform Security Essentials'], 'module' => $modules['Data Handling Scenarios'], 'grade' => 93],
-            ['user' => $users['casey.patel@example.com'], 'class' => null, 'course' => $courses['Leadership Foundations'], 'module' => $modules['Feedback That Sticks'], 'grade' => 79],
+            ['user' => $users['sam.rivera@example.com'], 'class' => null, 'course' => $courses['Leadership Foundations'], 'module' => $modules['Leading Through Change'], 'grade' => 96],
+            ['user' => $users['sam.rivera@example.com'], 'class' => $classes['Quarterly Compliance Briefing'], 'course' => null, 'module' => null, 'grade' => 84],
+            ['user' => $users['sam.rivera@example.com'], 'class' => $classes['Demo Platform Walkthrough'], 'course' => null, 'module' => null, 'grade' => 90],
+            ['user' => $users['sam.rivera@example.com'], 'class' => null, 'course' => $courses['Platform Security Essentials'], 'module' => $modules['Secure Customer Messaging'], 'grade' => 98],
+            ['user' => $users['sam.rivera@example.com'], 'class' => null, 'course' => $courses['Platform Security Essentials'], 'module' => $modules['Data Handling Scenarios'], 'grade' => 93],
+            ['user' => $users['sam.rivera@example.com'], 'class' => null, 'course' => $courses['Leadership Foundations'], 'module' => $modules['Feedback That Sticks'], 'grade' => 79],
         ];
 
         foreach ($grades as $grade) {
@@ -216,9 +207,9 @@ class DemoActivitySeeder extends Seeder
 
         $grants = [
             ['user' => $users['sam.rivera@example.com'], 'award' => $awards['Customer Advocate']],
-            ['user' => $users['jamie.chen@example.com'], 'award' => $awards['Launch Ready']],
-            ['user' => $users['riley.brooks@example.com'], 'award' => $awards['Security Steward']],
-            ['user' => $users['taylor.nguyen@example.com'], 'award' => $awards['Facilitator Spotlight']],
+            ['user' => $users['sam.rivera@example.com'], 'award' => $awards['Launch Ready']],
+            ['user' => $users['sam.rivera@example.com'], 'award' => $awards['Security Steward']],
+            ['user' => $users['sam.rivera@example.com'], 'award' => $awards['Facilitator Spotlight']],
         ];
 
         foreach ($grants as $grant) {

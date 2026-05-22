@@ -35,6 +35,28 @@ class AuthAndAccessTest extends TestCase
         $this->assertAuthenticatedAs($user);
     }
 
+    public function test_login_is_rate_limited_after_too_many_failed_attempts(): void
+    {
+        $this->withoutMiddleware(VerifyCsrfToken::class);
+
+        $this->createUser([
+            'username' => 'rate-limited-user',
+            'password' => bcrypt('secret-pass'),
+        ]);
+
+        for ($attempt = 0; $attempt < 5; $attempt++) {
+            $this->post('/login', [
+                'username' => 'rate-limited-user',
+                'password' => 'wrong-pass',
+            ])->assertSessionHasErrors('username');
+        }
+
+        $this->post('/login', [
+            'username' => 'rate-limited-user',
+            'password' => 'wrong-pass',
+        ])->assertStatus(429);
+    }
+
     public function test_sanctum_route_returns_authenticated_user(): void
     {
         $user = $this->createUser();
@@ -66,6 +88,27 @@ class AuthAndAccessTest extends TestCase
         Role::create(['name' => 'Support', 'guard_name' => 'web']);
 
         $response = $this->actingAs($user)->get('/permissions');
+
+        $response->assertForbidden();
+    }
+
+    public function test_guest_is_redirected_to_login_from_protected_routes(): void
+    {
+        $response = $this->get('/users');
+
+        $response->assertRedirect('/login');
+    }
+
+    public function test_demo_mode_blocks_billing_routes(): void
+    {
+        config([
+            'demo.enabled' => true,
+            'demo.features.billing' => false,
+        ]);
+
+        $user = $this->createUser();
+
+        $response = $this->actingAs($user)->get('/membership');
 
         $response->assertForbidden();
     }

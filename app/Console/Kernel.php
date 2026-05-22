@@ -15,9 +15,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function () {
-
-        });
+        $schedule->command('demo:reset')
+            ->hourly()
+            ->withoutOverlapping()
+            ->when(fn () => config('demo.enabled') && config('demo.reset.enabled'));
     }
 
     /**

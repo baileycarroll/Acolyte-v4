@@ -76,6 +76,19 @@ return [
             'throw' => false,
         ],
 
+        'demo_storage' => [
+            'driver' => 's3',
+            'key' => env('DEMO_STORAGE_KEY'),
+            'secret' => env('DEMO_STORAGE_SECRET'),
+            'region' => env('DEMO_STORAGE_REGION', 'us-east-1'),
+            'bucket' => env('DEMO_STORAGE_BUCKET'),
+            'url' => env('DEMO_STORAGE_URL'),
+            'endpoint' => env('DEMO_STORAGE_ENDPOINT'),
+            'use_path_style_endpoint' => env('DEMO_STORAGE_USE_PATH_STYLE_ENDPOINT', false),
+            'visibility' => env('DEMO_STORAGE_VISIBILITY', 'private'),
+            'throw' => false,
+        ],
+
     ],
 
     /*
